@@ -1,0 +1,180 @@
+@extends('layouts.app')
+@section('content')
+<div class="pcoded-wrapper">
+    <div class="pcoded-content">
+        <div class="container">
+
+            <div class="row blue-border-bottom">
+                <div class="col-sm-12 col-md-12 px-0">
+                    <div class="top-header pt-2 ">
+                        <h3 class="margin-page-title">Add Member</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table_div_padding">
+                        <form method="POST" action="{{ route('dashboard.user.store') }}">
+                            @csrf
+                            <div class="card mb-4">
+                                <div class="card-header">Basic Info</div>
+                                <div class="container">
+                                    <div class="row pt-4">
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="firstname" class="form-label">First Name *</label>
+                                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="firstname" aria-describedby="firstname">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="lastname" class="form-label">Last Name</label>
+                                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname" aria-describedby="lastname">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="email" class="form-label">Email *</label>
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" aria-describedby="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="phone" class="form-label">Phone</label>
+                                                <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone" aria-describedby="phone">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="Address" class="form-label">Address</label>
+                                                <input type="text" class="form-control" id="Address" placeholder="Address" aria-describedby="Address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="zip" class="form-label">Zip / Postal Code</label>
+                                                <input type="text" class="form-control" name="zip" id="zip" placeholder="Zip" aria-describedby="zip">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="City" class="form-label">City</label>
+                                                <input type="text" class="form-control" id="City" name="City" placeholder="City" aria-describedby="City">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="state" class="form-label">State / Province</label>
+                                                <input type="text" class="form-control" id="state" name="state" placeholder="State" aria-describedby="state">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="Country" class="form-label">Country</label>
+                                                <select class="form-control form-select" name="country" id="country" aria-label="Default select example">
+                                                    <option selected>Select Country</option>
+                                                    <option value="1">Active</option>
+                                                    <option value="2">Disable</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">Aditional Info</div>
+                                <div class="container">
+                                    <div class="row pt-4">
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="Type" class="form-label">Project</label>
+                                                <select class="form-control form-select" name="project" id="project" aria-label="Default select example">
+                                                    <option selected>Select Type</option>
+                                                    @foreach($projects as $key=>$data)
+                                                    <option value="{{$data->id}}">{{$data->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12 stream_update_title">
+                                            <div>
+                                                <b data-toggle="modal" data-target="#exampleModal"><a class="add_icon"><span><i class="fas fa-plus-circle"></i></span><span> Add Project</span></a></b>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="Type" class="form-label">Type</label>
+                                                <select class="form-control form-select" id="project_type" name="project_type" aria-label="Default select example">
+                                                    <option selected>Select Type</option>
+                                                    <option value="1">Active</option>
+                                                    <option value="2">Disable</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
+                                                <label for="Status" class="form-label">Status</label>
+                                                <select class="form-control form-select" name="status" id="status" aria-label="Default select example">
+                                                    <option selected>Select Status</option>
+                                                    <option value="1">Active</option>
+                                                    <option value="2">Disable</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">Save</button>
+                            <button class="btn btn-light text-white">Cancel</button>
+                        </form>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-xl-12 col-md-12 col-12">
+                                                    <div class="mb-4">
+                                                        <label for="firstname" class="form-label"> Name </label>
+                                                        <input type="text" class="form-control" id="firstname" aria-describedby="firstname">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <div class="custom-file mb-3">
+                                                            <label>Image</label>
+                                                            <div class="row">
+                                                                <div class="col-sm-9 col-xs-9 col-md-9">
+                                                                    <input type="text" class="file_upload_input form-control" id="firstname" aria-describedby="firstname">
+                                                                </div>
+                                                                <div class="col-sm-3 col-xs-3 col-md-3 project_btn_col">
+                                                                    <input class="file_upload_custom" type="file" id="myfile" name="myfile">
+                                                                    <span class="btn btn-light text-white project_upload_btn">Upload</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer project_modal_footer users_modal_footer">
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <button type="button" class="btn btn-light text-white" data-dismiss="modal">Cancel</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+@endsection
