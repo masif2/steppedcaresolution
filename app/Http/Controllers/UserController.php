@@ -14,6 +14,7 @@ class UserController extends Controller
         
         $data=[];
         $data["users"]=User::orderBy('id','desc')->get();
+      //  dd($data);
         return view('members.index',$data);
     }
 

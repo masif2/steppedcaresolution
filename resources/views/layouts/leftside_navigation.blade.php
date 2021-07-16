@@ -22,7 +22,7 @@
                         <a href="{{route('dashboard.users')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/Users_icon.png"></span><span class="pcoded-mtext">Users</span></a>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="../default/forms.html" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/Forms_icon.png"></span><span class="pcoded-mtext">Forms</span></a>
+                        <a href="{{route('forms.index')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/Forms_icon.png"></span><span class="pcoded-mtext">Forms</span></a>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
                         <a href="../default/report.html" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/reports_icon.png"></span><span class="pcoded-mtext">Reports</span></a>
