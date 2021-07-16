@@ -1,9 +1,9 @@
-@include('members.index')
+@include('modals.index')
 <script src="../../assets/js/vendor-all.min.js"></script>
     <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="../../assets/js/pcoded.min.js"></script>
     <script src="../../assets/js/main.js"></script>
-    @if(request()->segment(2)=="dashboard")
+    @if(request()->segment(1)=="dashboard")
     <script src="../../assets/js/highchart.js"></script>
     <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
