@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+
+    if(auth()->user()){
+    return redirect('dashboard');
+    }else{
+        return redirect('login');
+    }
+   
 });
 
 Auth::routes();
