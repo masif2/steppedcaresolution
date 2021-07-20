@@ -41,7 +41,6 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
     Route::delete('/user/{id?}', [App\Http\Controllers\UserController::class,'delete'])->name('dashboard.user.delete');
 });//
 
-<<<<<<< HEAD
     //
     Route::group(['prefix' => 'forms',  'middleware' => 'auth'], function(){
         Route::get('/', [App\Http\Controllers\FormController::class,'index'])->name('forms.index');
@@ -52,7 +51,6 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
 
     });//
     
-=======
   //
   Route::group(['prefix' => 'project',  'middleware' => 'auth'], function(){
     Route::get('/', [App\Http\Controllers\ProjectController::class,'index'])->name('dashboard.projects');
@@ -63,7 +61,6 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
     Route::get('/view', [App\Http\Controllers\ProjectController::class,'edit'])->name('dashboard.project.view');
     Route::delete('/project/{id?}', [App\Http\Controllers\ProjectController::class,'delete'])->name('dashboard.project.delete');
 });//
->>>>>>> 8370d67878385dc24e7c5fd089a95063a9528ac4
 
 
 });
