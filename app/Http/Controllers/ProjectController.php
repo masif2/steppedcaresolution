@@ -65,7 +65,7 @@ class ProjectController extends Controller
             }
     
 
-        return response()->json(["status"=>"success","data"=>$params]);
+        return response()->json(["status"=>"success","data"=>$params,"request"=> $request->all()]);
     die();
 
         $project=new project;
