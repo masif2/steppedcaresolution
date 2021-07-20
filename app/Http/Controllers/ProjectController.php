@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\project;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 class ProjectController extends Controller
 {
     /**
@@ -35,7 +35,45 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
         //
+        $validator = Validator::make($request->all(), [
+            'project_name' => ['required', 'string', 'max:255'],
+        ]);
+
+        if ($validator->fails()) {
+
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+
+        }
+        $params=$request->except('_token');
+       // dd($params);
+        $params["name"]=$request->project_name;
+
+       
+
+           
+        if ($request->file('project_image')) {
+            $photo = $request->file('project_image');
+            $fileName=$photo->getClientOriginalName();
+            $extension=$photo->getClientOriginalExtension();
+            $request->file('project_image')->move(public_path('/uploads/'), $fileName);
+            $params['image_path']='/uploads/'. $fileName;
+           
+            }
+    
+
+        return response()->json(["status"=>"success","data"=>$params]);
+    die();
+
+        $project=new project;
+        $project->create($params);
+        # code...
+        $data=$project;
+        return response()->json(["status"=>"success","data"=>$data,"requests"=>$request->all()]);
+
     }
 
     /**

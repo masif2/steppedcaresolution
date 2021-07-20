@@ -141,4 +141,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    @if(request()->url=="dashboard")
+    $(div).removeClass("pcoded-main-container")
+    @endif 
+})
+</script>
 @endsection
