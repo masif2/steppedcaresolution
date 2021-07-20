@@ -1,8 +1,5 @@
 @include('modals.index')
 <script src="../../assets/js/vendor-all.min.js"></script>
-    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/pcoded.min.js"></script>
-    <script src="../../assets/js/main.js"></script>
-
-   
-   
+<script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../assets/js/pcoded.min.js"></script>
+<script src="../../assets/js/main.js"></script>

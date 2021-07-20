@@ -39,7 +39,7 @@
     @endif
     
     <!-- [ Main Content ] start -->
-    <div class="@if(request()->url='login') @else pcoded-main-container @endif" id="main">
+    <div class=" @if(request()->segment(1) == "login") @else pcoded-main-container @endif" id="maindiv">
         @yield('content')
     </div>
 
