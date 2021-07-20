@@ -15,5 +15,30 @@ $(document).ready(function(){
         $("#delete_modal").show();
        
     })
+    //
+    $("#js_add_project_btn").click(function(){
+        
+    })
 
 })
+
+
+function AddProject(form_id){
+    event.preventDefault();
+    var $form = $("#" + form_id);
+    var url = $form.attr('action');
+    var formData = $("#" + form_id).serialize();
+    // alert(url)
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        url: url,
+        type: $form.attr("method"),
+        data: formData,
+        success: function(response) {
+        console.log(response)
+        }
+    });
+    
+}

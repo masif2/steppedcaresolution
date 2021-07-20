@@ -14,7 +14,16 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="table_div_padding">
-                        <form method="POST" action="{{ route('dashboard.user.store') }}">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                        <form method="POST" action="{{ route('dashboard.user.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card mb-4">
                                 <div class="card-header">Basic Info</div>
@@ -23,25 +32,25 @@
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="firstname" class="form-label">First Name *</label>
-                                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="firstname" aria-describedby="firstname">
+                                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="firstname" aria-describedby="firstname" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="lastname" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname" aria-describedby="lastname">
+                                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname" aria-describedby="lastname" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="email" class="form-label">Email *</label>
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" aria-describedby="email">
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" aria-describedby="email" required> 
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="phone" class="form-label">Phone</label>
-                                                <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone" aria-describedby="phone">
+                                                <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone" aria-describedby="phone" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
@@ -68,13 +77,15 @@
                                                 <input type="text" class="form-control" id="state" name="state" placeholder="State" aria-describedby="state">
                                             </div>
                                         </div>
+                                        
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="Country" class="form-label">Country</label>
                                                 <select class="form-control form-select" name="country" id="country" aria-label="Default select example">
                                                     <option selected>Select Country</option>
-                                                    <option value="1">Active</option>
-                                                    <option value="2">Disable</option>
+                                                    @foreach($countries as $data)
+                                                    <option value="{{$data->name}}">{{$data->name}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -123,6 +134,7 @@
                                         </div>
                                     </div>
                                 </div>
+                              <input type="file" name="project_image_1">
                             </div>
                             <button class="btn btn-primary">Save</button>
                             <button class="btn btn-light text-white">Cancel</button>
@@ -137,22 +149,23 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form>
+                                    <form method="POST" action="{{ route('dashboard.project.store') }}"  enctype="multipart/form-data" id="js_add_project"> 
+                                    @csrf
                                             <div class="row">
                                                 <div class="col-lg-12 col-xl-12 col-md-12 col-12">
                                                     <div class="mb-4">
                                                         <label for="firstname" class="form-label"> Name </label>
-                                                        <input type="text" class="form-control" id="firstname" aria-describedby="firstname">
+                                                        <input type="text" class="form-control" id="project_name" name="project_name" aria-describedby="project_name">
                                                     </div>
                                                     <div class="mb-4">
                                                         <div class="custom-file mb-3">
                                                             <label>Image</label>
                                                             <div class="row">
                                                                 <div class="col-sm-9 col-xs-9 col-md-9">
-                                                                    <input type="text" class="file_upload_input form-control" id="firstname" aria-describedby="firstname">
+                                                                    <input type="text" class="file_upload_input form-control"  aria-describedby="project_image">
                                                                 </div>
                                                                 <div class="col-sm-3 col-xs-3 col-md-3 project_btn_col">
-                                                                    <input class="file_upload_custom" type="file" id="myfile" name="myfile">
+                                                                    <input class="file_upload_custom" type="file" id="project_image" name="project_image">
                                                                     <span class="btn btn-light text-white project_upload_btn">Upload</span>
                                                                 </div>
                                                             </div>
@@ -163,7 +176,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer project_modal_footer users_modal_footer">
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <button type="button" class="btn btn-primary" onclick="AddProject('js_add_project')">Add</button>
                                         <button type="button" class="btn btn-light text-white" data-dismiss="modal">Cancel</button>
 
                                     </div>

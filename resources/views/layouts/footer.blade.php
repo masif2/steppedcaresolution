@@ -3,7 +3,7 @@
     <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="../../assets/js/pcoded.min.js"></script>
     <script src="../../assets/js/main.js"></script>
-    @if(request()->segment(1)=="dashboard")
+    @if(request()->url=="dashboard")
     <script src="../../assets/js/highchart.js"></script>
     <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -11,6 +11,7 @@
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
    
     <script>
+        alert(1)
         Highcharts.chart('container', {
             chart: {
                 type: 'column'
@@ -236,4 +237,5 @@
             }]
         });
     </script>
+    @else
     @endif

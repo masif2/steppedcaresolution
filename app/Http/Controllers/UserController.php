@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\project;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     //
@@ -14,7 +17,11 @@ class UserController extends Controller
         
         $data=[];
         $data["users"]=User::orderBy('id','desc')->get();
+<<<<<<< HEAD
       //  dd($data);
+=======
+       
+>>>>>>> 8370d67878385dc24e7c5fd089a95063a9528ac4
         return view('members.index',$data);
     }
 
@@ -35,13 +42,40 @@ class UserController extends Controller
         # code...
         $data=[];
         $data["projects"]=project::all();
-        
+        $data["countries"]=DB::table("countries")->get();
         return view('members.create',$data);
     }
     
     //
-    public function store(Request $request)
+    public function store(Request  $request)
     {
+       
+
+        $path="";
+       
+        if ($request->file('project_image_1')) {
+            $imagePath = $request->file('project_image_1');
+            $imageName = $imagePath->getClientOriginalName();
+
+            $path = $request->file('project_image_1')->storeAs('uploads', $imageName, 'public');
+        }
+            dd( $request->all(),$path);
+       
+
+        $validator = Validator::make($request->all(), [
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+           // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if ($validator->fails()) {
+
+            return back()
+            ->withErrors($validator)
+            ->withInput();
+
+        }
         $params=$request->except('_token');
        // dd($params);
         $params["name"]=$request->firstname.' '.$request->lastname;
