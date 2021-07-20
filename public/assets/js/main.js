@@ -25,15 +25,26 @@ $(document).ready(function(){
 
 function AddProject(form_id){
     event.preventDefault();
+
+
+    $("#"+form_id).submit();
+/*
+    let image_upload = new FormData();
+    let profile_image = $("#project_image")[0].files[0];
+    image_upload.append('photo', profile_image);
+
+
     var $form = $("#" + form_id);
     var url = $form.attr('action');
     var image=$("#project_image")[0].files[0];
     var formData = $("#" + form_id).serialize();
 
-    var projectform = new FormData();
-    var image=$("#project_image")[0].files[0];
-    projectform.append('project_image', image);
-    projectform.append('name', $("#project_name").val());
+    $.each($("#project_image")[0].files[0], function(key, file) {
+        $('.files').append('<li>' + file.name + '</li>');
+
+        var data = new FormData();
+        data.append("project_image", file);
+         data.append("project_image", file);
 
     // alert(url)
     $.ajax({
@@ -42,10 +53,13 @@ function AddProject(form_id){
         },
         url: url,
         type: $form.attr("method"),
-        data: projectform,
+        dataType: 'json',
+        processData: false,
+        data: data,
         success: function(response) {
         console.log(response)
         }
     });
-    
+}); 
+*/
 }

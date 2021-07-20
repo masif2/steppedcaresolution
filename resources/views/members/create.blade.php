@@ -176,7 +176,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer project_modal_footer users_modal_footer">
-                                        <button type="button" class="btn btn-primary" onclick="AddProject('js_add_project')">Add</button>
+                                        <button type="button" class="btn btn-primary" >Add</button>
                                         <button type="button" class="btn btn-light text-white" data-dismiss="modal">Cancel</button>
 
                                     </div>
