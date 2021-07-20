@@ -62,13 +62,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 bg-color-login">
+        <div class="col-sm-6 bg-color-login image_container">
+        <div class="login-container">
             <div class="login_image">
                 <div class="img-div">
-                    <img src="../assets/images/login.PNG" />
+                    <img class="login_image_width" src="../assets/images/login.PNG" />
                 </div>
             </div>
         </div>
+        </div>
     </div>
 </div>
+
 @endsection
