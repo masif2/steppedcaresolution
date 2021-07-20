@@ -39,7 +39,7 @@
     @endif
     
     <!-- [ Main Content ] start -->
-    <div class=" @if(request()->url=="dashboard") @lese pcoded-main-container @endif">
+    <div class="@if(request()->url=="login") @lese pcoded-main-container @endif" id="main">
         @yield('content')
     </div>
 
