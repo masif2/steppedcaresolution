@@ -43,11 +43,12 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
 
     //
     Route::group(['prefix' => 'forms',  'middleware' => 'auth'], function(){
-        Route::get('/', [App\Http\Controllers\FormController::class,'index'])->name('forms.index');
+
+        Route::get('/', [App\Http\Controllers\FormController::class,'index'])->name('dashboard.forms');
         Route::get('/create', [App\Http\Controllers\FormController::class,'create'])->name('dashboard.form.create');
         Route::post('/edit', [App\Http\Controllers\FormController::class,'store'])->name('dashboard.form.edit');
         Route::get('/show', [App\Http\Controllers\FormController::class,'edit'])->name('dashboard.form.show');
-        Route::post('/create', [App\Http\Controllers\FormController::class,'update'])->name('dashboard.form.create');
+        Route::post('/delete/{id}', [App\Http\Controllers\FormController::class,'update'])->name('dashboard.form.delete');
 
     });//
     
