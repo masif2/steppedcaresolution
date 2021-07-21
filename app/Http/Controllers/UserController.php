@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Project;
+use App\Models\project;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +17,7 @@ class UserController extends Controller
     //
     function __construct()
     {
-        $this->projects_model = new Project;
+        $this->projects_model = new project;
     }
 
     //
