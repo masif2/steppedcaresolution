@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class project extends Model
+class Project extends Model
 {
     use HasFactory;
 
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,4 +20,25 @@ class project extends Model
         'image'
     ];
 
+    //
+    public function search_Projects($project)
+    {
+        if ($project == "all") {
+            $projects = $this::all()
+                ->pluck('id');
+        } else {
+            $projects = $this::where('name', 'like', '%' .  $project . '%')
+                ->get()
+                ->pluck('id');
+        }
+        return $projects;
+    }
+    //
+
+    //
+    public function all_Projects()
+    {
+        return $this::orderBy("id", "desc")->get();
+    }
+    //
 }

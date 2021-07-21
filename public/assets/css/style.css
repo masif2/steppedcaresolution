@@ -10106,6 +10106,10 @@ table.sub_table td:last-child {
 .editable_td{
     padding:0px !important;
 }
+.stream_button_new{
+    background-color: #4A90CB;
+    color:white;
+}
 @media only screen and (min-width:768px) and (max-width:1000px) {
     .grid_container {
         grid-template-columns: 87% 12%;
@@ -10135,9 +10139,24 @@ table.sub_table td:last-child {
     .second_li {
         border-left: unset;
     }
+    .login_image_width{
+        width:100%
+    }
+    .header_logo {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width:767px) {
+   .image_container{
+       display: none;
+   }
+    .login_image_width{
+        width:100%
+    }
+    .header_logo {
+        width: 100%;
+    }
     .project_modal_footer {
         border-top: none !important;
     }
@@ -10219,6 +10238,12 @@ table.sub_table td:last-child {
 }
 
 @media only screen and (min-width:1000px) and (max-width:1100px) {
+    .header_logo {
+        width: 100%;
+    }
+    .login_image_width{
+        width:100%
+    }
     .summary_period_body {
         height: 100%;
     }

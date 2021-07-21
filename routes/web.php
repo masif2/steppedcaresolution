@@ -22,7 +22,7 @@ Route::get('/', function () {
     }
    
 });
-
+Route::get('/activate_account/{id}', [App\Http\Controllers\GuestUserController::class, 'activate_user_account'])->name('activate_user_account');
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
@@ -37,8 +37,8 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
     Route::post('/store', [App\Http\Controllers\UserController::class,'store'])->name('dashboard.user.store');
     Route::get('/edit', [App\Http\Controllers\UserController::class,'edit'])->name('dashboard.user.edit');
     Route::post('/update', [App\Http\Controllers\UserController::class,'update'])->name('dashboard.user.update');
-    Route::get('/view', [App\Http\Controllers\UserController::class,'edit'])->name('dashboard.user.view');
-    Route::delete('/user/{id?}', [App\Http\Controllers\UserController::class,'delete'])->name('dashboard.user.delete');
+    Route::get('/view', [App\Http\Controllers\UserController::class,'show'])->name('dashboard.user.view');
+    Route::get('/user/{id?}', [App\Http\Controllers\UserController::class,'delete'])->name('dashboard.user.delete');
 });//
 
     //

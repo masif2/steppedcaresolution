@@ -22,9 +22,9 @@ class AddColumnsToUsersTable extends Migration
             $table->string('city')->nullable()->after('zip');
             $table->string('state')->nullable()->after('city');
             $table->string('country')->nullable()->after('state');
-
-            $table->unsignedBigInteger('project_id')->unsigned()->after('country');
-           // $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->string('address')->nullable()->after('country');
+            $table->unsignedBigInteger('project_id')->unsigned()->after('address');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->enum('project_type',["Active","Disabled"])->after('project_id');
             $table->enum('status',["Active","Disabled"])->after('project_type');
             $table->enum('role',["Admin","Manager","User"])->after('password');

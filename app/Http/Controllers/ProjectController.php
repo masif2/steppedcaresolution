@@ -35,44 +35,34 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
-        //
+       //
         $validator = Validator::make($request->all(), [
             'project_name' => ['required', 'string', 'max:255'],
+            'project_image' => 'required|image|mimes:png,jpg,jpeg|max:2000',
         ]);
-
+        //
         if ($validator->fails()) {
-
-            return back()
-            ->withErrors($validator)
-            ->withInput();
-
+            return back() ->withErrors($validator)->withInput();
         }
+        //
+
         $params=$request->except('_token');
-       // dd($params);
         $params["name"]=$request->project_name;
-
-       
-
-           
+         //
         if ($request->file('project_image')) {
             $photo = $request->file('project_image');
             $fileName=$photo->getClientOriginalName();
             $extension=$photo->getClientOriginalExtension();
-            $request->file('project_image')->move(public_path('/uploads/'), $fileName);
-            $params['image_path']='/uploads/'. $fileName;
+            $path = $request->file('project_image')->storeAs('uploads', $fileName);
+            $params['image']='/storage/'.$path;
            
             }
-    
-
-        return response()->json(["status"=>"success","data"=>$params,"request"=> $request->all()]);
-    die();
-
+        //
         $project=new project;
         $project->create($params);
         # code...
-        $data=$project;
-        return response()->json(["status"=>"success","data"=>$data,"requests"=>$request->all()]);
+        return back()->with('success','Project created successfully!');
+        
 
     }
 

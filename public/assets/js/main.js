@@ -11,10 +11,17 @@ $(document).ready(function(){
     //
 
     $(".delete_modal").click(function(){
-       let url=$(this).attr('data-deleteMember');
-        $("#delete_modal").show();
+       $("#target_row").val($(this).attr('data-deleteMember'));
+        $("#delete_modal").modal('show');
        
     })
+
+    
+    $(".del_modal_btn").click(function(){
+      window.location.href=$("#target_row").val();
+        
+     })
+
     //
     $("#js_add_project_btn").click(function(){
         
@@ -25,41 +32,30 @@ $(document).ready(function(){
 
 function AddProject(form_id){
     event.preventDefault();
-
-
-    $("#"+form_id).submit();
-/*
-    let image_upload = new FormData();
-    let profile_image = $("#project_image")[0].files[0];
-    image_upload.append('photo', profile_image);
-
-
     var $form = $("#" + form_id);
     var url = $form.attr('action');
-    var image=$("#project_image")[0].files[0];
-    var formData = $("#" + form_id).serialize();
+    let profile_image = $("#project_image")[0].files[0];
 
-    $.each($("#project_image")[0].files[0], function(key, file) {
-        $('.files').append('<li>' + file.name + '</li>');
-
-        var data = new FormData();
-        data.append("project_image", file);
-         data.append("project_image", file);
-
-    // alert(url)
+    //Serialize the Form
+    var values = {};
+    $.each($("#" + form_id).serializeArray(), function (i, field) {
+        values[field.name] = field.value;
+       // values["project_image"]=profile_image;
+    });
+  
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         },
+        method: $form.attr("method"),
         url: url,
-        type: $form.attr("method"),
-        dataType: 'json',
+        data: values,
+        contentType: false,
         processData: false,
-        data: data,
         success: function(response) {
         console.log(response)
         }
     });
-}); 
-*/
+
+
 }
