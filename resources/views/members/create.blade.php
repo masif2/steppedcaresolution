@@ -108,7 +108,7 @@
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="Type" class="form-label">Type</label>
-                                                <select class="form-control form-select" id="role" name="role" aria-label="Default select example">
+                                                <select class="form-control form-select" id="role" name="role" aria-label="Default select example" required>
                                                     <option selected>Select Type</option>
                                                     @foreach(users_roles() as $data)
                                                     <option value="{{ $data}}">{{ $data}}</option>
