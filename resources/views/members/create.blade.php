@@ -77,7 +77,7 @@
                                                 <select class="form-control form-select" name="country" id="country" aria-label="Default select example" >
                                                     <option selected disabled>Select Country</option>
                                                     @foreach($countries as $data)
-                                                    <option value="{{$data->name}}">{{$data->name}}</option>
+                                                    <option value="{{$data->name}}" {{old('country')== $data->name ? "selected" :""}}>{{$data->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -95,7 +95,7 @@
                                                 <select class="form-control form-select" name="project_id" id="project_id" aria-label="Default select example">
                                                     <option selected disabled>Select Project</option>
                                                     @foreach($projects as $key=>$data)
-                                                    <option value="{{$data->id}}">{{$data->name}}</option>
+                                                    <option value="{{$data->id}}" {{old('project_id')== $data->id ? "selected" :""}}>{{$data->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -109,9 +109,9 @@
                                             <div class="mb-4">
                                                 <label for="Type" class="form-label">Type</label>
                                                 <select class="form-control form-select" id="role" name="role" aria-label="Default select example" required>
-                                                    <option selected>Select Type</option>
+                                                    <option selected disabled>Select Type</option>
                                                     @foreach(users_roles() as $data)
-                                                    <option value="{{ $data}}">{{ $data}}</option>
+                                                    <option value="{{ $data}}" {{old('role')== $data ? "selected" :""}}>{{ $data}}</option>
                                                     @endforeach
                                                     
                                                 </select>
@@ -120,10 +120,10 @@
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="Status" class="form-label">Status</label>
-                                                <select class="form-control form-select" name="status" id="status" aria-label="Default select example">
+                                                <select class="form-control form-select" name="status" id="status" aria-label="Default select example" required>
                                                     <option selected>Select Status</option>
                                                     @foreach(user_status() as $data)
-                                                    <option value="{{ $data}}">{{ $data}}</option>
+                                                    <option value="{{ $data}}" {{old('status')== $data ? "selected" :""}}>{{ $data}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -133,7 +133,7 @@
                     
                             </div>
                             <button class="btn btn-primary">Save</button>
-                            <button class="btn btn-light text-white">Cancel</button>
+                            <button type="reset" class="btn btn-light text-white">Cancel</button>
                         </form>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -175,7 +175,7 @@
                                     </div>
                                     <div class="modal-footer project_modal_footer users_modal_footer">
                                         <button type="button" class="btn btn-primary" onclick="createproject('js_add_project')">Add</button>
-                                        <button type="button" class="btn btn-light text-white" data-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-light text-white" data-dismiss="modal">Cancel</button>
 
                                     </div>
                                 </div>

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Mail;
+use Illuminate\Support\Str;
+use Carbon\Carbon; 
 class UserController extends Controller
 {
     protected $projects_model;
@@ -84,14 +86,33 @@ class UserController extends Controller
     public function store(Request  $request)
     {
         //
+/*
+        $data['email']= 'masif2024@gmail.com';
+            $data['url']=(route('activate_user_account',encrypt($data['email'])));
+            $data['subject'] = "Verify Your Email Address";
+            $data['msg'] = "Welcome to Stepped Care Solutions";
+            $data['username']  = "m asif ";
 
+            try {
+                Mail::send('emails.reset', $data, function($message) use ($data){ 
+                    $message->to(str_replace("\xE2\x80\x8B", "",  $data['email']))->from('masif@egenienext.com', 'Stepped Care Solutions' )->subject($data['subject']);
+                });
+                
+            } catch (Exception $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        die();
+*/
         $validator = Validator::make($request->all(), [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => 'required|digits:11',
-            'role' => ['required'],
-        ]);
+            'role' => 'required',
+        ],
+        [
+            'role.required' => 'Please choose User Type!'
+         ]);
         //
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
@@ -104,34 +125,38 @@ class UserController extends Controller
         $params["role"] = $request->role;
         $params["password"] = bcrypt('12345678');
         $params["createdBy"] = auth()->user()->id;
-        try {
+        
             # code...
             $user = new User;
             $user->create($params);
             //
 
-            $data['email']= $user->email;
-            $data['url']=(route('activate_user_account',encrypt($data['email'])));
+            $data['email']= $request->email;
+            $token = Str::random(64);
+            $data['url']=(route('reset.password.get',$token));
             $data['subject'] = "Verify Your Email Address";
             $data['msg'] = "Welcome to Stepped Care Solutions";
-            $data['username']  = $user->firstname. ' '.$user->lastname;
+            $data['username']  = $request->firstname. ' '.$request->lastname;
+
+          
+            DB::table('password_resets')->insert([
+                'email' => $request->email, 
+                'token' => $token, 
+                'created_at' => Carbon::now()
+              ]);
 
             try {
                 Mail::send('emails.reset', $data, function($message) use ($data){ 
                     $message->to($data['email'])->from('masif@egenienext.com', 'Stepped Care Solutions' )->subject($data['subject']);
                 });
                 
+                return back()->with('success', 'Member created successfully!');   
+                //
             } catch (Exception $e) {
                 return back()->with('error', $e->getMessage());
             }
-
-
-            return back()->with('success', 'Member created successfully!');
             //
-        } catch (Exception $e) {
-            //
-            return back()->with('error', $e->getMessage());
-        }
+       
     }
 
     //

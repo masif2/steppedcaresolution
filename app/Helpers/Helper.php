@@ -41,6 +41,7 @@ if (!function_exists('created_BY')) {
     {
         //
         $user = \DB::table("users")->select(DB::raw("CONCAT(firstname,lastname) as username"))->where("id", $id)->get()->first();
+       
         if (!empty($user)) {
             return $user->username;
         } else {

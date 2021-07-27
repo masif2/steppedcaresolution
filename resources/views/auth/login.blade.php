@@ -37,26 +37,26 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4 text-body font-weight-bold">
-                                    <a class="text-body under-line" href="">{{ __('Forgot Password ?') }}</a>
+                                    <a class="text-body under-line" href="{{route('forget.password.get')}}">{{ __('Forgot Password ?') }}</a>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <button class="btn sign-in-btn text-white" onclick="location.href = '../default/user-stream.html'">
+                                    <button class="btn sign-in-btn text-white">
                                         <span>Sign Me In</span>
                                     </button>
                                 </div>
                             </div>
-                            <div class="row">
+                             <!--<div class="row">
                                 <div class="col-sm-5">
                                     <a class="text-body under-line font-weight-bold" href=""> {{ __("Don't have an account ?") }}</a>
                                 </div>
-                                <div class="col-sm-6">
+                               <div class="col-sm-6">
                                     <a class="text-info under-line text-left font-weight-bold" href="">
                                         {{ __('Sign up') }}
                                     </a>
                                 </div>
-                            </div>
+                            </div>-->
                         </form>
                     </div>
                 </div>
