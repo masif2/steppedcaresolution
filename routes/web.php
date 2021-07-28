@@ -21,11 +21,11 @@ Route::get('/', function () {
     }else{
         return redirect('login');
     }
-   
+
 });
 //
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //
@@ -50,7 +50,16 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
 });//
 
     //
-    Route::group(['prefix' => 'forms',  'middleware' => 'auth'], function(){
+    Route::group(['middleware' => 'auth'], function(){
+
+
+
+        Route::resource('forms', App\Http\Controllers\FormController::class)->except([
+            'create'
+        ]);
+
+       /*
+        Route::group(['prefix' => 'forms',  'middleware' => 'auth'], function(){
         Route::get('/', [App\Http\Controllers\FormController::class,'index'])->name('dashboard.forms');
         Route::get('/create', [App\Http\Controllers\FormController::class,'create'])->name('dashboard.form.create');
         Route::post('/edit', [App\Http\Controllers\FormController::class,'store'])->name('dashboard.form.edit');
@@ -58,8 +67,12 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
         Route::get('/stream', [App\Http\Controllers\FormController::class,'stream'])->name('dashboard.form.stream');
         Route::get('/addstream', [App\Http\Controllers\FormController::class,'addstream'])->name('dashboard.form.addstream');
         Route::post('/delete/{id}', [App\Http\Controllers\FormController::class,'update'])->name('dashboard.form.delete');
-    });//
-    
+       */
+
+    });
+  //
+   
+
   //
   Route::group(['prefix' => 'project',  'middleware' => 'auth'], function(){
     Route::get('/', [App\Http\Controllers\ProjectController::class,'index'])->name('dashboard.projects');
