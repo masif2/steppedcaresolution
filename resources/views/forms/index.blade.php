@@ -86,11 +86,11 @@
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
                                                         <a data-toggle="modal" data-target="#editFormModal{{$form->form_id}}" class="btn table_btn update_btn text-white">Update</a>
-                                                        {{--<a href="#" class="btn table_btn table_btn delete_btn text-white">Delete</a>--}}
-                                                        <button type="button" class="btn  table_btn delete_btn text-white delete_modal" data-toggle="modal" data-deleteForm="{{route('forms.delete')}}{{'?ref='.encrypt($form->form_id)}}">Delete</button>
+                                                        <a href="#" class="btn table_btn table_btn delete_btn text-white">Delete</a>
+                                                        {{--<button type="button" class="btn  table_btn delete_btn text-white delete_modal" data-toggle="modal" data-deleteForm="{{route('forms.delete')}}{{'?ref='.encrypt($form->form_id)}}">Delete</button>--}}
                                                         <button type="button" class="btn stream_button_new table_btn text-white" onclick="location.href = '../default/forms-stream.html'">Streams</button>
                                                     </div>
-                                                    @include('forms.partials.update_form_modal')
+                                                    {{--@include('forms.partials.update_form_modal')--}}
                                                 </td>
                                             </tr>
                                         @endforeach
