@@ -37,6 +37,7 @@ class FormController extends Controller
         return view('forms.index')->with(compact('projects', 'forms', 'active_user', 'row_show'));
     }
 
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
