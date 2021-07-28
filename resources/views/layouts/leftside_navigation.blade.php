@@ -16,7 +16,7 @@
                         <a href="{{route('dashboard')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/Dashboard_icon.png"></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="../default/periods.html" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/periods_icon.png"></span><span class="pcoded-mtext">Periods</span></a>
+                        <a href="{{route('dashboard.periods')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/periods_icon.png"></span><span class="pcoded-mtext">Periods</span></a>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
                         <a href="{{route('dashboard.users')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/Users_icon.png"></span><span class="pcoded-mtext">Users</span></a>
