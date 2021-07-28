@@ -63,7 +63,7 @@
                                             <td> Email </td>
                                             <td> Phone </td>
                                             <td> Type </th>
-                                            <td class="three_btn_width"> Status </td>
+                                            <td class="three_btn_width"> Actions </td>
                                         </tr>
                                     </thead>
                                     <tbody>
