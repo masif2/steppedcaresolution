@@ -81,7 +81,18 @@
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <button type="button" class="btn table_btn  update_btn text-white">Update</button>
                                                             <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
-                                                            <button type="button" class="btn stream_button_new table_btn  text-white" onclick="location.href = '../default/forms-stream.html'">Streams</button>
+                                                            <a href="{{route('dashboard.form.stream',["id"=>1])}}" type="button" class="btn stream_button_new table_btn  text-white">Streams</a>                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td><a href="../default/forms-stream.html">this is long form name</a></td>
+                                                    <td>Child Health Care</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                            <button type="button" class="btn table_btn  update_btn text-white">Update</button>
+                                                            <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
+                                                            <a href="{{route('dashboard.form.stream',["id"=>2])}}" type="button" class="btn stream_button_new table_btn  text-white">Streams</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -93,19 +104,7 @@
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <button type="button" class="btn table_btn  update_btn text-white">Update</button>
                                                             <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
-                                                            <button type="button" class="btn stream_button_new table_btn  text-white" onclick="location.href = '../default/forms-stream.html'">Streams</button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td><a href="../default/forms-stream.html">this is long form name</a></td>
-                                                    <td>Child Health Care</td>
-                                                    <td>
-                                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                                            <button type="button" class="btn table_btn  update_btn text-white">Update</button>
-                                                            <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
-                                                            <button type="button" class="btn stream_button_new table_btn  text-white" onclick="location.href = '../default/forms-stream.html'">Streams</button>
+                                                            <a href="{{route('dashboard.form.stream',["id"=>3])}}" type="button" class="btn stream_button_new table_btn  text-white">Streams</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -143,9 +142,5 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
+      
 @endsection

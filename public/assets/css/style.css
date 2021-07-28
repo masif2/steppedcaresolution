@@ -10083,7 +10083,12 @@ table.sub_table td:last-child {
 .tablinks:hover .image_black {
     display: none;
 }
-
+.tablinks.active .image_black{
+    display: none;
+   }
+   .tablinks.active .image_white{
+       display: inline-block;
+      }
 .tablinks:hover .image_white {
     display: inline-block;
 }

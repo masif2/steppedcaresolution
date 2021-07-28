@@ -51,13 +51,13 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
 
     //
     Route::group(['prefix' => 'forms',  'middleware' => 'auth'], function(){
-
         Route::get('/', [App\Http\Controllers\FormController::class,'index'])->name('dashboard.forms');
         Route::get('/create', [App\Http\Controllers\FormController::class,'create'])->name('dashboard.form.create');
         Route::post('/edit', [App\Http\Controllers\FormController::class,'store'])->name('dashboard.form.edit');
         Route::get('/show', [App\Http\Controllers\FormController::class,'edit'])->name('dashboard.form.show');
+        Route::get('/stream', [App\Http\Controllers\FormController::class,'stream'])->name('dashboard.form.stream');
+        Route::get('/addstream', [App\Http\Controllers\FormController::class,'addstream'])->name('dashboard.form.addstream');
         Route::post('/delete/{id}', [App\Http\Controllers\FormController::class,'update'])->name('dashboard.form.delete');
-
     });//
     
   //
@@ -69,6 +69,11 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
     Route::post('/update', [App\Http\Controllers\ProjectController::class,'update'])->name('dashboard.project.update');
     Route::get('/view', [App\Http\Controllers\ProjectController::class,'edit'])->name('dashboard.project.view');
     Route::delete('/project/{id?}', [App\Http\Controllers\ProjectController::class,'delete'])->name('dashboard.project.delete');
+});//
+
+Route::group(['prefix' => 'periods',  'middleware' => 'auth'], function(){
+    Route::get('/', [App\Http\Controllers\PeriodController::class,'index'])->name('dashboard.periods');
+  
 });//
 
 
