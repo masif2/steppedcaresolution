@@ -45,19 +45,15 @@ class ForgotPasswordController extends Controller
 
         $user = User::where("email", $request->email)->first();
         if (!empty($user)) {
-
             $data['email'] = $user->email;
             $data['url'] = (route('reset.password.get', $token));
             $data['subject'] = "Reset Your Password";
             $data['msg'] = "Welcome to Stepped Care Solutions";
             $data['username']  = $user->firstname . ' ' . $user->lastname;
-
-
             try {
                 Mail::send('emails.reset', $data, function ($message) use ($data) {
                     $message->to($data['email'])->from('masif@egenienext.com', 'Stepped Care Solutions')->subject($data['subject']);
                 });
-
                 return back()->with('success', 'We have e-mailed your password reset link!');
             } catch (Exception $e) {
                 return back()->with('error', $e->getMessage());
