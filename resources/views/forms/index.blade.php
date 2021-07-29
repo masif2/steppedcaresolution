@@ -18,7 +18,7 @@
                         <div class="table_div_padding">
                             @include('layouts.flash-message')
                             <div class="card pt-3">
-                                <form method="POST" action="{{ route('forms.store') }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('dashboard.form.store') }}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="container">
                                         <div class="row">
@@ -28,17 +28,21 @@
                                                     <input type="text" class="form-control" id="newform" name="name" value="{{ old('name') }}" required placeholder="Month 1" aria-describedby="newform">
                                                 </div>
                                             </div>
-                                            <div class="col-xl-5 col-lg-5 col-md-5 col-12">
-                                                <div class="mb-3">
-                                                    <label for="FormGroup" class="form-label">Select Project *</label>
-                                                    <select class="form-control form-select" name="project_id" aria-label="Default select example" required>
-                                                        <option value="">Select Project</option>
-                                                        @foreach($projects as $project)
-                                                            <option value="{{$project->id}}" {{old('project_id') == $project->id ? "selected" : ""}}>{{$project->name}}</option>
-                                                        @endforeach
-                                                    </select>
+                                            @if($active_user->role != 'Admin')
+                                                <input type="hidden" name="project_id" value="{{$active_user->project_id}}">
+                                            @else
+                                                <div class="col-xl-5 col-lg-5 col-md-5 col-12">
+                                                    <div class="mb-3">
+                                                        <label for="FormGroup" class="form-label">Select Project *</label>
+                                                        <select class="form-control form-select" name="project_id" aria-label="Default select example" required>
+                                                            <option value="">Select Project</option>
+                                                            @foreach($projects as $project)
+                                                                <option value="{{$project->id}}" {{old('project_id') == $project->id ? "selected" : ""}}>{{$project->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                             <div class="col-xl-2 col-lg-2 col-md-2 col-12">
                                                 <label for="newform" class="form-label hide-on-mobile" style="visibility: hidden;display: block;">Create New Form</label>
                                                 <button class="btn btn-primary">Save</button>
@@ -48,13 +52,13 @@
                                 </form>
                             </div>
                             <div class="card pt-3">
-                                <form action="">
+                                <form method="get" action="">
                                     <div class="container">
                                         <div class="row report_row_top ">
                                             <div class="col-xl-5 col-lg-5 col-md-6 col-12">
                                                 <div class="select_project_width">
                                                     <label for="Project" class="form-label">Search</label>
-                                                    <input type="text" class="form-control" id="newform" placeholder="Select Here" aria-describedby="newform">
+                                                    <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Search Here" value="{{request()->get('keyword')}}">
                                                 </div>
                                             </div>
                                             <div class="col-xl-5 col-lg-5 col-md-6 col-12 report_flex_row">
@@ -86,11 +90,12 @@
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
                                                         <a data-toggle="modal" data-target="#editFormModal{{$form->form_id}}" class="btn table_btn update_btn text-white">Update</a>
-                                                        <a href="#" class="btn table_btn table_btn delete_btn text-white">Delete</a>
-                                                        {{--<button type="button" class="btn  table_btn delete_btn text-white delete_modal" data-toggle="modal" data-deleteForm="{{route('forms.delete')}}{{'?ref='.encrypt($form->form_id)}}">Delete</button>--}}
+
+                                                        <button type="button" class="btn table_btn delete_btn text-white delete_form_modal" data-toggle="modal" data-deleteForm="{{route('dashboard.form.delete')}}{{'?ref='.encrypt($form->form_id)}}">Delete</button>
                                                         <button type="button" class="btn stream_button_new table_btn text-white" onclick="location.href = '../default/forms-stream.html'">Streams</button>
                                                     </div>
-                                                    {{--@include('forms.partials.update_form_modal')--}}
+                                                    @include('forms.partials.update_form_modal')
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -98,27 +103,20 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class=" flex-columns flex-setting">
-                                <div class="inline_block_adj show_rows_adj">
-                                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Show Rows :</label>
-                                    <select class=" my-1 show_rows_count" id="inlineFormCustomSelectPref">
-                                    <option selected>30</option>
-                                    <option value="1">50</option>
-                                    <option value="2">60</option>
-                                    <option value="3">70</option>
-                                </select>
-                                </div>
+
+                            {{-- Delete Form Modal--}}
+                            @include('forms.partials.delete_modal')
+
+                            <div class=" flex-columns flex-setting mob_margin_pagination">
+                                <form>
+                                    <div class="inline_block_adj show_rows_adj">
+                                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Show Rows :</label>
+                                        <select name="" class="my-1 show_rows_count" id="show_rows" onchange="get_per_page()">
+                                        </select>
+                                    </div>
+                                </form>
                                 <div class="show_rows_adj margin_top">
-                                    <nav aria-label="Page navigation example ">
-                                        <ul class="pagination">
-                                            <li class="page-item "><a class="page-link active" href="#">Prev</a>
-                                            </li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                        </ul>
-                                    </nav>
+                                    {{$forms->links('components.pagination')}}
                                 </div>
                             </div>
                         </div>
@@ -128,10 +126,30 @@
         </div>
     </div>
 
-    <script>
-        $(".delete_form_modal").click(function(){
-            $("#target_row").val($(this).attr('data-deleteForm'));
-            $("#form_delete_modal").modal('show');
-        })
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            let array=[ "10", "20", "30","40","50"];
+            $("#show_rows").empty();
+            var show_rows='';
+            @if(!empty($row_show))
+                for ( var key in array) {
+                if(array[key]=={{$row_show}}){
+                    show_rows='<option value="'+array[key]+'" " selected>'+array[key]+'</option>';
+                }else{
+                    show_rows ='<option value="'+array[key]+'" ">'+array[key]+'</option>';
+                }
+
+                $("#show_rows").append(show_rows);
+            }
+            @else
+                for ( var key in array) {
+                show_rows ='<option value="'+array[key]+'" ">'+array[key]+'</option>';
+                $("#show_rows").append(show_rows);
+            }
+            @endif
+        });
+
     </script>
 @endsection

@@ -1,6 +1,6 @@
 
 <!-- Delete Modal -->
-<div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="form_delete_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,10 +13,10 @@
                 <p> Are you sure you want to delete ?</p>
                 <p> Remember this action will not be reversible .</p>
             </div>
-            <input type="hidden" id="target_row">
+            <input type="hidden" id="target_row_form">
             <div class="modal-footer users_modal_footer">
-                <a type="button" class="btn  del_modal_btn text-white" data-dismiss="modal">Delete</a>
-                <button type="button" class="btn  cancel_modal_btn text-white" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <a type="button" class="btn btn-primary form_delete_modal_btn text-white" data-dismiss="modal">Delete</a>
+                <button type="button" class="btn cancel_modal_btn text-white" data-dismiss="modal" aria-label="Close">Cancel</button>
             </div>
         </div>
     </div>
