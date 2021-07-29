@@ -17,15 +17,14 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-2 px-0">
-                            <div class="top-header pt-2 add_icon_pad right_icon_text pr-4" style="color:#1B9C53">
-                                <b class=""> <a href="{{route('dashboard.form.addstream')}}" type="button" class="btn stream_button_new table_btn  text-white"> <span ><i class="fas fa-plus-circle"></i></span><span> Add Stream</span></a></b>
+                            <div class="top-header pt-2 add_icon_pad right_icon_text pr-4">
+                                <b class=""> <a href="{{route('dashboard.form.addstream')}}"  style="color:#1B9C53 !important"> <span ><i class="fas fa-plus-circle"></i></span><span> Add Stream</span></a></b>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="table_div_padding">
-
                                 <div class="card mb-0">
                                     <div class="table-responsive">
                                         <table class="table  forms_stream_table  table_margin_adj">
@@ -48,7 +47,7 @@
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <button type="button" class="btn table_btn  update_btn text-white">Update</button>
                                                             <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
-                                                            <button type="button" class="btn  table_btn permission_btn text-white" onclick="location.href = '../default/permission.html'" >Permissions</button>
+                                                            <a type="button" class="btn  table_btn permission_btn text-white" href="{{route('dashboard.permissions')}}" >Permissions</a>
 
                                                         </div>
                                                     </td>
@@ -62,7 +61,7 @@
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <button type="button" class="btn table_btn  update_btn text-white">Update</button>
                                                             <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
-                                                            <button type="button" class="btn  table_btn permission_btn text-white" onclick="location.href = '../default/permission.html'"  >Permissions</button>
+                                                            <a type="button" class="btn  table_btn permission_btn text-white" href="{{route('dashboard.permissions')}}"  >Permissions</a>
 
                                                         </div>
                                                     </td>
@@ -76,16 +75,13 @@
                                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                             <button type="button" class="btn table_btn  update_btn text-white">Update</button>
                                                             <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
-                                                            <button type="button" class="btn  table_btn permission_btn text-white" onclick="location.href = '../default/permission.html'" >Permissions</button>
-
+                                                            <a type="button" class="btn  table_btn permission_btn text-white" href="{{route('dashboard.permissions')}}" >Permissions</a>
                                                         </div>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
                                 <div class=" flex-columns mob_margin_pagination flex-setting">
                                     <div class="inline_block_adj show_rows_adj">

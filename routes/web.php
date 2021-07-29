@@ -36,8 +36,6 @@ Auth::routes();
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 //
 Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
-
-
     //
     Route::group(['prefix' => 'users',  'middleware' => 'auth'], function(){
     Route::get('/', [App\Http\Controllers\UserController::class,'index'])->name('dashboard.users');
@@ -86,8 +84,13 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
 
 Route::group(['prefix' => 'periods',  'middleware' => 'auth'], function(){
     Route::get('/', [App\Http\Controllers\PeriodController::class,'index'])->name('dashboard.periods');
-  
+    Route::get('/create', [App\Http\Controllers\PeriodController::class,'create'])->name('dashboard.periods.create');
 });//
-
+Route::group(['prefix' => 'reports',  'middleware' => 'auth'], function(){
+    Route::get('/', [App\Http\Controllers\ReportsController::class,'index'])->name('dashboard.reports');
+});//
+Route::group(['prefix' => 'permissions',  'middleware' => 'auth'], function(){
+    Route::get('/', [App\Http\Controllers\PermissionsController::class,'index'])->name('dashboard.permissions');
+});//
 
 });

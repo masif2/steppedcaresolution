@@ -11,7 +11,7 @@
                         </div>
                         <div class="col-sm-6 col-md-3 col-lg-2">
                             <div class="top-header right_icon_text">
-                                <b class=""><a class="add_icon"href="../default/add-period.html"><span ><i class="fas fa-plus-circle"></i></span><span> Add Periods</span></a></b>
+                                <b class=""><a class="add_icon" href="{{route('dashboard.periods.create')}}"><span ><i class="fas fa-plus-circle"></i></span><span> Add Periods</span></a></b>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,6 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="table_div_padding">
-
                                 <div class="card mb-0">
                                     <div class="table-responsive">
                                         <table class="table     table_margin_adj">
@@ -37,7 +36,7 @@
                                                     <td> Start Date </td>
                                                     <td> End Date </td>
                                                     <td> Status </td>
-                                                    <td> </td>
+                                                    <td> Actions</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -77,11 +76,9 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
                                 <div class=" flex-columns flex-setting mob_margin_pagination">
                                     <div class="inline_block_adj show_rows_adj">

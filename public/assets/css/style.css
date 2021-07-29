@@ -9375,7 +9375,7 @@ table.table_margin_adj thead tr th:last-child {
 }
 
 .right_icon_text {
-    color: #1B9C53;
+    color: #1B9C53 !important;
     text-align: end;
     padding-top: 12px;
     font-size: 16px;
@@ -10114,6 +10114,9 @@ table.sub_table td:last-child {
 .stream_button_new{
     background-color: #4A90CB;
     color:white;
+}
+table.table_margin_adj thead tr td:last-child{
+    width:35% !important;
 }
 @media only screen and (min-width:768px) and (max-width:1000px) {
     .grid_container {

@@ -25,10 +25,10 @@
                         <a href="{{route('forms.index')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/Forms_icon.png"></span><span class="pcoded-mtext">Forms</span></a>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="../default/report.html" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/reports_icon.png"></span><span class="pcoded-mtext">Reports</span></a>
+                        <a  href="{{route('dashboard.reports')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/reports_icon.png"></span><span class="pcoded-mtext">Reports</span></a>
                     </li>
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="../default/permission.html" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/permission.png"> </span><span class="pcoded-mtext"> Permissions </span></a>
+                        <a href="{{route('dashboard.permissions')}}"  class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/permission.png"> </span><span class="pcoded-mtext"> Permissions </span></a>
                     </li>
                     <!-- <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Componant</span></a>
