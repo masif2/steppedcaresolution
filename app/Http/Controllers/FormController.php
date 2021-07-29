@@ -95,4 +95,16 @@ class FormController extends Controller
             return back()->with('error', $e->getMessage());
         }
     }
+    public function stream(Request $request){
+        $stream=$request->id??null;
+        if(!empty($stream)){
+            return view("forms.stream");
+        }else{
+            return view("forms.index");   
+        }
+    }
+    public function addstream(){
+        return view("forms.addstream");
+    }
+    
 }
