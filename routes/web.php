@@ -50,6 +50,14 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
         Route::get('/form/{id?}', [App\Http\Controllers\FormController::class,'delete'])->name('dashboard.form.delete');
     });
 
+    Route::group(['prefix' => 'streams', 'middleware' => 'auth'], function(){
+        Route::get('/index/{form_id}', [App\Http\Controllers\StreamController::class,'index'])->name('dashboard.streams');
+        Route::get('/create/{form_id}', [App\Http\Controllers\StreamController::class,'create'])->name('dashboard.stream.create');
+        Route::post('/store', [App\Http\Controllers\StreamController::class,'store'])->name('dashboard.stream.store');
+        Route::post('/update', [App\Http\Controllers\StreamController::class,'update'])->name('dashboard.stream.update');
+        Route::get('/stream/{id?}', [App\Http\Controllers\StreamController::class,'delete'])->name('dashboard.stream.delete');
+    });
+
     Route::group(['prefix' => 'project',  'middleware' => 'auth'], function(){
         Route::get('/', [App\Http\Controllers\ProjectController::class,'index'])->name('dashboard.projects');
         Route::get('/create', [App\Http\Controllers\ProjectController::class,'create'])->name('dashboard.project.create');
@@ -61,15 +69,20 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
     });
 
 
-Route::group(['prefix' => 'periods',  'middleware' => 'auth'], function(){
-    Route::get('/', [App\Http\Controllers\PeriodController::class,'index'])->name('dashboard.periods');
-    Route::get('/create', [App\Http\Controllers\PeriodController::class,'create'])->name('dashboard.periods.create');
-});//
-Route::group(['prefix' => 'reports',  'middleware' => 'auth'], function(){
-    Route::get('/', [App\Http\Controllers\ReportsController::class,'index'])->name('dashboard.reports');
-});//
-Route::group(['prefix' => 'permissions',  'middleware' => 'auth'], function(){
-    Route::get('/', [App\Http\Controllers\PermissionsController::class,'index'])->name('dashboard.permissions');
-});//
+    Route::group(['prefix' => 'periods',  'middleware' => 'auth'], function(){
+        Route::get('/', [App\Http\Controllers\PeriodController::class,'index'])->name('dashboard.periods');
+        Route::get('/create', [App\Http\Controllers\PeriodController::class,'create'])->name('dashboard.periods.create');
+    });
+
+    Route::group(['prefix' => 'reports',  'middleware' => 'auth'], function(){
+        Route::get('/', [App\Http\Controllers\ReportsController::class,'index'])->name('dashboard.reports');
+    });
+
+    Route::group(['prefix' => 'permissions',  'middleware' => 'auth'], function(){
+        Route::get('/create', [App\Http\Controllers\PermissionsController::class,'create'])->name('dashboard.permissions');
+    });
 
 });
+
+Route::get('/get-forms/{id}', [\App\Http\Controllers\PermissionsController::class, 'getForms']);
+Route::get('/get-streams/{id}', [\App\Http\Controllers\PermissionsController::class, 'getStreams']);
