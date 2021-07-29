@@ -56,12 +56,12 @@
                                     <div class="container">
                                         <div class="row report_row_top ">
                                             <div class="col-xl-5 col-lg-5 col-md-6 col-12">
-                                                <div class="select_project_width">
+                                                <div >
                                                     <label for="Project" class="form-label">Search</label>
                                                     <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Search Here" value="{{request()->get('keyword')}}">
                                                 </div>
                                             </div>
-                                            <div class="col-xl-5 col-lg-5 col-md-6 col-12 report_flex_row">
+                                            <div class="col-xl-5 col-lg-5 col-md-6 col-12 pl-0 report_flex_row">
                                                 <div class="span_search_div">
                                                     <button class="report_search_icon span_mid"><i class="fas fa-search "></i></button>
                                                 </div>

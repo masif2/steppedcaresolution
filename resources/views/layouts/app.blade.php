@@ -40,7 +40,7 @@
     @endif
 
     <!-- [ Main Content ] start -->
-    <div class=" @if(request()->segment(1) == "login") @else pcoded-main-container @endif" id="maindiv">
+    <div class=" @if(request()->segment(1) == "login" || request()->segment(1) =="reset-password" || request()->segment(1) =="forget-password"  ) @else pcoded-main-container @endif" id="maindiv">
      @yield('content')
     </div>
 

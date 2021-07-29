@@ -3,12 +3,10 @@
 <div class="pcoded-wrapper">
     <div class="pcoded-content">
         <div class="container">
-
             <div class="row blue-border-bottom">
                 <div class="col-sm-12 col-md-12 px-0">
                     <div class="top-header pt-2 ">
                         <h3 class="margin-page-title">View Member</h3>
-                       
                     </div>
                 </div>
             </div>
