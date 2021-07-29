@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class PermissionsController extends Controller
 {
+
     public function create()
     {
         $active_user = User::where('id', auth()->user()->id)->first();
@@ -20,6 +21,7 @@ class PermissionsController extends Controller
         }
         $projects = project::all();
         return view("permissions.create")->with(compact('projects','active_user', 'forms'));
+
     }
 
     public function getForms($project_id)
