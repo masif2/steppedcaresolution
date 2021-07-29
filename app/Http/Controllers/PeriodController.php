@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 class PeriodController extends Controller
 {
     public function index(){
-        return view("periods.index");
+        return view("Periods.index");
     }
     public function create(){
-        return view("periods.addPeriod");
+        return view("Periods.addPeriod");
     }
    
     
