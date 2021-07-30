@@ -13,11 +13,9 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-
     if(auth()->user()){
-    return redirect('dashboard');
+        return redirect('dashboard');
     }else{
         return redirect('login');
     }

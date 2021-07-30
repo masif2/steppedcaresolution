@@ -10118,6 +10118,12 @@ table.sub_table td:last-child {
 table.table_margin_adj thead tr td:last-child{
     width:35% !important;
 }
+table.table_margin_adj tbody tr:last-child td{
+    border-bottom: unset;
+}
+.reset_margin_bottom{
+    margin-bottom: 7px !important;
+}
 @media only screen and (min-width:768px) and (max-width:1000px) {
     .grid_container {
         grid-template-columns: 87% 12%;
@@ -10205,6 +10211,7 @@ table.table_margin_adj thead tr td:last-child{
     .table_margin_adj {
         table-layout: auto !important;
     }
+   
     .pcoded-header .custom_dropdown .dropdown-menu {
         top: 72px;
         transform: translate(146%, 0%);
