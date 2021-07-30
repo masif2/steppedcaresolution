@@ -15,4 +15,9 @@ class Form extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    public function streams()
+    {
+        return $this->hasMany(Stream::class);
+    }
 }

@@ -25,8 +25,6 @@ class StreamController extends Controller
             ->orderBy('stream_id', 'DESC')
             ->get();
 
-        //dd($streams);
-
         $form = Form::where('id', $form_id)->first();
         return view('streams.index')->with(compact('streams', 'form'));
     }
@@ -45,7 +43,7 @@ class StreamController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {

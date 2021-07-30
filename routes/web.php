@@ -23,7 +23,7 @@ Route::get('/', function () {
     }
 
 });
-//
+
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
@@ -78,7 +78,7 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
     });
 
     Route::group(['prefix' => 'reports',  'middleware' => 'auth'], function(){
-        Route::get('/', [App\Http\Controllers\ReportsController::class,'index'])->name('dashboard.reports');
+        Route::get('/', [App\Http\Controllers\ReportController::class,'index'])->name('dashboard.reports');
     });
 
     Route::group(['prefix' => 'permissions',  'middleware' => 'auth'], function(){
