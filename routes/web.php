@@ -72,7 +72,11 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'periods',  'middleware' => 'auth'], function(){
         Route::get('/', [App\Http\Controllers\PeriodController::class,'index'])->name('dashboard.periods');
-        Route::get('/create', [App\Http\Controllers\PeriodController::class,'create'])->name('dashboard.periods.create');
+        Route::get('/create', [App\Http\Controllers\PeriodController::class,'create'])->name('dashboard.period.create');
+        Route::post('/store', [App\Http\Controllers\PeriodController::class,'store'])->name('dashboard.period.store');
+        Route::get('/edit/{id}', [App\Http\Controllers\PeriodController::class,'edit'])->name('dashboard.period.edit');
+        Route::post('/update{id}', [App\Http\Controllers\PeriodController::class,'update'])->name('dashboard.period.update');
+        Route::get('/user/{id?}', [App\Http\Controllers\PeriodController::class,'delete'])->name('dashboard.period.delete');
     });
 
     Route::group(['prefix' => 'reports',  'middleware' => 'auth'], function(){
