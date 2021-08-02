@@ -19,9 +19,10 @@ Route::get('/', function () {
     }else{
         return redirect('login');
     }
+
 });
-//
-Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password');
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
@@ -71,11 +72,15 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'periods',  'middleware' => 'auth'], function(){
         Route::get('/', [App\Http\Controllers\PeriodController::class,'index'])->name('dashboard.periods');
-        Route::get('/create', [App\Http\Controllers\PeriodController::class,'create'])->name('dashboard.periods.create');
+        Route::get('/create', [App\Http\Controllers\PeriodController::class,'create'])->name('dashboard.period.create');
+        Route::post('/store', [App\Http\Controllers\PeriodController::class,'store'])->name('dashboard.period.store');
+        Route::get('/edit/{id}', [App\Http\Controllers\PeriodController::class,'edit'])->name('dashboard.period.edit');
+        Route::post('/update{id}', [App\Http\Controllers\PeriodController::class,'update'])->name('dashboard.period.update');
+        Route::get('/user/{id?}', [App\Http\Controllers\PeriodController::class,'delete'])->name('dashboard.period.delete');
     });
 
     Route::group(['prefix' => 'reports',  'middleware' => 'auth'], function(){
-        Route::get('/', [App\Http\Controllers\ReportsController::class,'index'])->name('dashboard.reports');
+        Route::get('/', [App\Http\Controllers\ReportController::class,'index'])->name('dashboard.reports');
     });
 
     Route::group(['prefix' => 'permissions',  'middleware' => 'auth'], function(){

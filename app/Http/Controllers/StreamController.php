@@ -14,6 +14,7 @@ class StreamController extends Controller
      *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
+
     public function index($form_id)
     {
         $streams = Stream::leftjoin('forms as f', 'f.id', '=', 'streams.form_id')
@@ -25,8 +26,6 @@ class StreamController extends Controller
             ->orderBy('stream_id', 'DESC')
             ->get();
 
-        //dd($streams);
-
         $form = Form::where('id', $form_id)->first();
         return view('streams.index')->with(compact('streams', 'form'));
     }
@@ -36,6 +35,7 @@ class StreamController extends Controller
      *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
+
     public function create($form_id)
     {
         return view('streams.create')->with(compact('form_id'));
@@ -45,8 +45,9 @@ class StreamController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -76,6 +77,7 @@ class StreamController extends Controller
      * @param  \App\Models\Stream  $stream
      * @return \Illuminate\Http\Response
      */
+
     public function show(Stream $stream)
     {
         //
@@ -87,6 +89,7 @@ class StreamController extends Controller
      * @param  \App\Models\Stream  $stream
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Stream $stream)
     {
         //
@@ -99,6 +102,7 @@ class StreamController extends Controller
      * @param  \App\Models\Stream  $stream
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Stream $stream)
     {
         //
@@ -110,6 +114,7 @@ class StreamController extends Controller
      * @param  \App\Models\Stream  $stream
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(Stream $stream)
     {
         //

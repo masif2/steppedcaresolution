@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Form extends Model
+class Period extends Model
 {
     use HasFactory;
 
@@ -15,9 +15,4 @@ class Form extends Model
      * @var array
      */
     protected $guarded = ['id'];
-
-    public function streams()
-    {
-        return $this->hasMany(Stream::class);
-    }
 }
