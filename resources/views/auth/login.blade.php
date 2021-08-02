@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4 text-body font-weight-bold">
-                                    <a class="text-body under-line" href="{{route('forget.password.get')}}">{{ __('Forgot Password ?') }}</a>
+                                    <a class="text-body under-line" href="{{route('forget.password')}}">{{ __('Forgot Password ?') }}</a>
                                 </div>
                             </div>
                             <div class="row">
