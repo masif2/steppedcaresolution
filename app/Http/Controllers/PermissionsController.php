@@ -35,5 +35,4 @@ class PermissionsController extends Controller
         $streams = Stream::where('form_id', $form_id)->pluck("name","id");
         return response()->json($streams);
     }
-
 }
