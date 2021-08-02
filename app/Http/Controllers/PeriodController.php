@@ -106,6 +106,4 @@ class PeriodController extends Controller
         }
         return redirect()->route('dashboard.periods')->with('success', 'Period updated successfully!');
     }
-
-
 }
