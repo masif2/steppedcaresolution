@@ -3,33 +3,44 @@
         <div class="navbar-wrapper ">
             <div class="navbar-brand header-logo nav_border">
                 <a href="{{route('dashboard')}}" class="b-brand">
-                    <img src="../../assets/images/logo_new.png" alt="" class="logo header_logo images ">
+                    <img src="{{asset('assets/images/logo_new.png')}}" alt="" class="logo header_logo images ">
 
-                    <img src="../../assets/images/logo-icon.svg" alt="" class="logo-thumb images">
+                    <img src="{{asset('assets/images/logo-icon.svg')}}" alt="" class="logo-thumb images">
                 </a>
                 <!-- <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a> -->
             </div>
             <div class="navbar-content scroll-div">
                 <ul class="nav pcoded-inner-navbar">
-
+                    @if(Auth::user()->role=="Admin" || Auth::user()->role=="Manager")
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="{{route('dashboard')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/Dashboard_icon.png"></span><span class="pcoded-mtext">Dashboard</span></a>
+                        <a href="{{route('dashboard')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="{{asset('assets/images/Dashboard_icon.png')}}"></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role=="Admin" || Auth::user()->role=="Manager")
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="{{route('dashboard.periods')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/periods_icon.png"></span><span class="pcoded-mtext">Periods</span></a>
+                        <a href="{{route('dashboard.periods')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="{{asset('assets/images/periods_icon.png')}}"></span><span class="pcoded-mtext">Periods</span></a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role=="Admin" || Auth::user()->role=="Manager")
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="{{route('dashboard.users')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/Users_icon.png"></span><span class="pcoded-mtext">Users</span></a>
+                        <a href="{{route('dashboard.users')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="{{asset('assets/images/Users_icon.png')}}"></span><span class="pcoded-mtext">Users</span></a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role=="Admin" || Auth::user()->role=="Manager" || Auth::user()->role=="User")
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="{{route('dashboard.forms')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/Forms_icon.png"></span><span class="pcoded-mtext">Forms</span></a>
+                        <a href="{{route('dashboard.forms')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="{{asset('assets/images/Forms_icon.png')}}"></span><span class="pcoded-mtext">Forms</span></a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role=="Admin" || Auth::user()->role=="Manager")
                     <li class="nav-item pcoded-hasmenu">
-                        <a  href="{{route('dashboard.reports')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/reports_icon.png"></span><span class="pcoded-mtext">Reports</span></a>
+                        <a  href="{{route('dashboard.reports')}}" class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="{{asset('assets/images/reports_icon.png')}}"></span><span class="pcoded-mtext">Reports</span></a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role=="Admin" || Auth::user()->role=="Manager")
                     <li class="nav-item pcoded-hasmenu">
-                        <a href="{{route('dashboard.permissions')}}"  class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="../../assets/images/permission.png"> </span><span class="pcoded-mtext"> Permissions </span></a>
+                        <a href="{{route('dashboard.permissions')}}"  class="nav-link"><span class="pcoded-micon"><img class="nav-icons" src="{{asset('assets/images/permission.png')}}"> </span><span class="pcoded-mtext"> Permissions </span></a>
                     </li>
+                    @endif
                     <!-- <li class="nav-item pcoded-hasmenu">
                     <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Componant</span></a>
                     <ul class="pcoded-submenu">
