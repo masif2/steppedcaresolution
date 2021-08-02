@@ -17,7 +17,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="table_div_padding">
-                            <form action="">
+                            <form method="POST" action="{{ route('dashboard.permission.store') }}">
+                                @csrf
                                 <div class="container">
                                     <div class="row mb-5">
                                         @if($active_user->role != 'Admin')
@@ -26,7 +27,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                 <div class="mb-4">
                                                     <label for="FormGroup" class="form-label">Select Project *</label>
-                                                    <select class="form-control form-select" id="project_id" name="project_id" aria-label="Default select example" required>
+                                                    <select class="form-control form-select" id="project_id" name="project_id" aria-label="Default select example" {{--required--}}>
                                                         <option value="">Select Project</option>
                                                         @foreach($projects as $project)
                                                             <option value="{{$project->id}}" {{old('project_id') == $project->id ? "selected" : ""}}>{{$project->name}}</option>
@@ -38,8 +39,8 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="FormGroup" class="form-label">Select Form *</label>
-                                                <select class="form-control form-select" id="form_id" name="form_id" required aria-label="Default select example">
-                                                    <option selected>Select Form</option>
+                                                <select class="form-control form-select" id="form_id" name="form_id" {{--required--}} aria-label="Default select example">
+                                                    <option value="">Select Form</option>
                                                     @if(!empty($forms))
                                                         @foreach($forms as $form)
                                                             <option value="{{$form->id}}">{{$form->name}}</option>
@@ -51,8 +52,8 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="Stream" class="form-label">Select Stream *</label>
-                                                <select class="form-control form-elect" id="stream_id" name="stream_id" required aria-label="Default select example">
-                                                    <option selected>Select Stream</option>
+                                                <select class="form-control form-elect" id="stream_id" name="stream_id" {{--required--}} aria-label="Default select example">
+                                                    <option value="">Select Stream</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -67,20 +68,24 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-                                            <div class="button">
+                                            {{--<div class="button">
                                                 <button class="mb-4 btn btn-primary d-block"><< Assign</button>
                                                 <button class="btn btn-primary d-block">Unassign >></button>
-                                            </div>
+                                            </div>--}}
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                             <h3 class="text-center">Unassigned User</h3>
                                             <div class="card mb-0">
                                                 <ul class="list-group" data-draggable="target">
-                                                    <li class="list-group-item"  data-draggable="item">An item</li>
-                                                    <li class="list-group-item"  data-draggable="item">A second item</li>
+                                                    @foreach($users as $user)
+                                                        <li class="list-group-item" data-draggable="item">
+                                                            <input type="hidden" name="assigned[]" value="{{$user->id}}">{{$user->name}}
+                                                        </li>
+                                                    @endforeach
+                                                    {{--<li class="list-group-item"  data-draggable="item">A second item</li>
                                                     <li class="active list-group-item"  data-draggable="item">A third item</li>
                                                     <li class="list-group-item"  data-draggable="item">A fourth item</li>
-                                                    <li class="list-group-item"  data-draggable="item">And a fifth one</li>
+                                                    <li class="list-group-item"  data-draggable="item">And a fifth one</li>--}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -88,7 +93,7 @@
                                     <div class="row mt-4">
                                         <div class="col-12">
                                             <button class="btn btn-primary">Save</button>
-                                            <button class="btn btn-light text-white">Cancel</button>
+                                            <a href="{{route('dashboard.permissions')}}" class="btn btn-light text-white">Cancel</a>
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +109,6 @@
     <script type="text/javascript">
         (function()
         {
-
             //exclude older browsers by the features we need them to support
             //and legacy opera explicitly so we don't waste time on a dead browser
             if
