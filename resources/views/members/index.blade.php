@@ -3,7 +3,6 @@
 <div class="pcoded-wrapper">
     <div class="pcoded-content">
         <div class="container">
-
             <div class="row blue-border-bottom">
                 <div class="col-sm-6 col-md-9 col-lg-10 px-0">
                     <div class="top-header pt-2 ">
@@ -16,35 +15,33 @@
                     </div>
                 </div>
             </div>
-            <form>
+            <form method="get" action="">
                 <div class="row  blue-border-bottom">
                     <div class="col-sm-12 col-md-3 px-0">
                         <p class="pl-4 mt-2 mb-0"> Search </p>
                         <div class="form-group pl-4 pt-1 d-flex search_bar_adj">
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Search here">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="keyword" aria-describedby="emailHelp" placeholder="Search here"  value="{{request()->get('keyword')}}">
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-3 px-0">
                         <p class="pl-4 mt-2 mb-0"> Type </p>
                         <div class="form-group pl-4 pt-1 d-flex search_bar_adj">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>All</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" id="exampleFormControlSelect1" name="type">
+                                <option value="all" selected>All</option>
+                                @foreach(users_roles() as $data)
+                                <option value="{{$data}}" {{request()->get('type')==$data?"selected":""}}>{{ $data}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-3 px-0">
                         <p class="pl-4 mt-2 mb-0"> Project </p>
                         <div class="form-group pl-4 pt-1 d-flex search_bar_adj">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>All</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" id="exampleFormControlSelect1" name="project">
+                               <option value="all" selected>All</option>
+                                @foreach($projects as $key=>$data)
+                                <option value="{{$data->name}}" {{request()->get('project')==$data->name?"selected":""}}>{{$data->name}}</option>
+                                @endforeach
                             </select>
                             <button class="span_search span_mid"><i class="fas fa-search search_icon"></i></button>
                         </div>
@@ -56,7 +53,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="table_div_padding">
-
+                        @include('layouts.flash-message')
                         <div class="card mb-0">
                             <div class="table-responsive">
                                 <table class="table   table_margin_adj">
@@ -66,7 +63,7 @@
                                             <td> Email </td>
                                             <td> Phone </td>
                                             <td> Type </th>
-                                            <td class="three_btn_width"> Status </td>
+                                            <td class="three_btn_width"> Actions </td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,11 +80,9 @@
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <a href="{{route('dashboard.user.view','ref='.encrypt($data->id))}}" type="button" class="btn  table_btn  view_btn text-white">View</a>
                                                     <a href="{{route('dashboard.user.edit','ref='.encrypt($data->id))}}" type="button" class="btn table_btn  update_btn text-white">Update</a>
-                                                    
-                                                    <button type="button" class="btn  table_btn delete_btn text-white delete_modal"
-                                                     data-toggle="modal" 
-                                                     data-deleteMember="{{route('dashboard.user.delete','ref='.encrypt($data->id))}}">Delete</button>
-        
+
+                                                    <button type="button" class="btn  table_btn delete_btn text-white delete_modal" data-toggle="modal" data-deleteMember="{{route('dashboard.user.delete')}}{{'?ref='.encrypt($data->id)}}">Delete</button>
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -99,28 +94,18 @@
 
                         </div>
                         <div class=" flex-columns flex-setting mob_margin_pagination">
+                        <form>
                             <div class="inline_block_adj show_rows_adj">
                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Show Rows :</label>
-                                <select class=" my-1 show_rows_count" id="inlineFormCustomSelectPref">
-                                    <option value="1">10</option>
-                                    <option value="2">20</option>
-                                    <option selected value="3">30</option>
-                                    <option value="4">40</option>
-                                    <option value="5">50</option>
+                                <select name="" class="my-1 show_rows_count" id="show_rows" onchange="get_per_page()">
                                 </select>
                             </div>
-                            <div class="show_rows_adj margin_top">
-                                <nav aria-label="Page navigation example ">
-                                    <ul class="pagination">
-                                        <li class="page-item "><a class="page-link active" href="#">Prev</a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
+                        </form>
+
+                        <div class="show_rows_adj margin_top">
+                            {{$users->links('components.pagination')}}
+                        </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -128,4 +113,28 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    let array=[ "10", "20", "30","40","50"];
+    $("#show_rows").empty();
+    var show_rows='';
+    @if(!empty($row_show))
+    for ( var key in array) {
+         if(array[key]=={{$row_show}}){
+         show_rows='<option value="'+array[key]+'" " selected>'+array[key]+'</option>';
+         }else{
+             show_rows ='<option value="'+array[key]+'" ">'+array[key]+'</option>'; 
+         }
+   
+        $("#show_rows").append(show_rows);
+    }
+    @else
+    for ( var key in array) {
+        show_rows ='<option value="'+array[key]+'" ">'+array[key]+'</option>'; 
+        $("#show_rows").append(show_rows);
+    }
+    @endif
+});
+</script>
 @endsection

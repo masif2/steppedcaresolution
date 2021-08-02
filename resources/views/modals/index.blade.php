@@ -13,6 +13,7 @@
                 <p> Are you sure you want to delete a member ?</p>
                 <p> Remember this action will not be reversible .</p>
             </div>
+            <input type="hidden" id="target_row">
             <div class="modal-footer users_modal_footer">
                 <a type="button" class="btn  del_modal_btn text-white" data-dismiss="modal">Delete</a>
                 <button type="button" class="btn  cancel_modal_btn text-white" data-dismiss="modal" aria-label="Close">Cancel</button>

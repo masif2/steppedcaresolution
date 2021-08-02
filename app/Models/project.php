@@ -8,4 +8,37 @@ use Illuminate\Database\Eloquent\Model;
 class project extends Model
 {
     use HasFactory;
+
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'image'
+    ];
+
+    //
+    public function search_Projects($project)
+    {
+        if ($project == "all") {
+            $projects = $this::all()
+                ->pluck('id');
+        } else {
+            $projects = $this::where('name', 'like', '%' .  $project . '%')
+                ->get()
+                ->pluck('id');
+        }
+        return $projects;
+    }
+    //
+
+    //
+    public function all_Projects()
+    {
+        return $this::orderBy("id", "desc")->get();
+    }
+    //
 }

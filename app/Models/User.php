@@ -27,9 +27,14 @@ class User extends Authenticatable
         'state',
         'country',
         'project_id',
-        'project_type',
+        'user_type',
+        'address',
         'status',
         'password',
+        'createdBy',
+        'updatedBy',
+        'last_login',
+        'role'
     ];
 
     /**

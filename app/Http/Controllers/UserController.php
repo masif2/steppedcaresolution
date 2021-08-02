@@ -5,76 +5,233 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\project;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Mail;
+use Illuminate\Support\Str;
+use Carbon\Carbon; 
 class UserController extends Controller
 {
+    protected $projects_model;
+
     //
-    public function index()
+    function __construct()
     {
-        # code...
-        
-        $data=[];
-        $data["users"]=User::orderBy('id','desc')->get();
-        return view('members.index',$data);
+        $this->projects_model = new project;
     }
 
-     //
-     public function show($id)
-     {
-         # code...
-         
-         $data=[];
-         $data["user"]=User::find(decrypt($id));
-         $data["projects"]=project::all();
-         return view('members.show',$data);
-     }
-    
+    //
+    public function index(Request $request)
+    {
+        # code...
+        $searchQuery = $request->keyword ?? null;
+        $type = $request->type ?? "all";
+        $project = $request->project ?? "all";
+        $perPage = $request->show_rows ?? 10;
+
+        //
+        if ($type == "all") {
+            $roles = users_roles();
+        } else {
+            $roles = [$type];
+        }
+        //
+        $projects = $this->projects_model->search_Projects($project);
+        //
+
+        $data = [];
+        //
+        $data["users"] = User::when($searchQuery, function ($x, $q) {
+            $x->where('email', 'like', '%' . $q . '%')
+                ->orwhere("firstname", 'like', '%' . $q . '%')
+                ->orwhere("lastname", 'like', '%' . $q . '%')
+                ->orwhere("phone", 'like', '%' . $q . '%')
+                ->orwhere("role", 'like', '%' . $q . '%');
+        })
+            ->when($roles, function ($x, $q) {
+                $x->whereIn('role', $q);
+            })
+            ->when($projects, function ($x, $q) {
+                $x->whereIn('project_id', $q);
+            })
+            ->orderBy(
+                'id',
+                'desc'
+            )->paginate($perPage);
+
+        //
+
+        $data["projects"] = $this->projects_model->all_Projects();
+        //
+        $data['row_show'] = $perPage;
+        //
+        return view('members.index', $data);
+    }
+
+   
+
     //
     public function create()
     {
         # code...
-        $data=[];
-        $data["projects"]=project::all();
-        
-        return view('members.create',$data);
+        $data = [];
+        $data["projects"] = $this->projects_model->all_Projects();;
+        $data["countries"] = DB::table("countries")->get();
+        return view('members.create', $data);
     }
-    
+
     //
-    public function store(Request $request)
+    public function store(Request  $request)
     {
-        $params=$request->except('_token');
-       // dd($params);
-        $params["name"]=$request->firstname.' '.$request->lastname;
-        $params["project_id"]=$request->project;
-        $params["password"]=bcrypt('12345678');
-        $user=new User;
-        $user->create($params);
-        # code...
-        $data=[];
-        return back();
+        //
+/*
+        $data['email']= 'masif2024@gmail.com';
+            $data['url']=(route('activate_user_account',encrypt($data['email'])));
+            $data['subject'] = "Verify Your Email Address";
+            $data['msg'] = "Welcome to Stepped Care Solutions";
+            $data['username']  = "m asif ";
+
+            try {
+                Mail::send('emails.reset', $data, function($message) use ($data){ 
+                    $message->to(str_replace("\xE2\x80\x8B", "",  $data['email']))->from('masif@egenienext.com', 'Stepped Care Solutions' )->subject($data['subject']);
+                });
+                
+            } catch (Exception $e) {
+                return back()->with('error', $e->getMessage());
+            }
+        die();
+*/
+        $validator = Validator::make($request->all(), [
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => 'required|digits:11',
+            'role' => 'required',
+        ],
+        [
+            'role.required' => 'Please choose User Type!'
+         ]);
+        //
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        //
+
+        $params = $request->except('_token');
+        $params["name"] = $request->firstname . ' ' . $request->lastname;
+        $params["project_id"] = $request->project_id;
+        $params["role"] = $request->role;
+        $params["password"] = bcrypt('12345678');
+        $params["createdBy"] = auth()->user()->id;
+        
+            # code...
+            $user = new User;
+            $user->create($params);
+            //
+
+            $data['email']= $request->email;
+            $token = Str::random(64);
+            $data['url']=(route('reset.password.get',$token));
+            $data['subject'] = "Verify Your Email Address";
+            $data['msg'] = "Welcome to Stepped Care Solutions";
+            $data['username']  = $request->firstname. ' '.$request->lastname;
+
+          
+            DB::table('password_resets')->insert([
+                'email' => $request->email, 
+                'token' => $token, 
+                'created_at' => Carbon::now()
+              ]);
+
+            try {
+                Mail::send('emails.reset', $data, function($message) use ($data){ 
+                    $message->to($data['email'])->from('masif@egenienext.com', 'Stepped Care Solutions' )->subject($data['subject']);
+                });
+                
+                return back()->with('success', 'Member created successfully!');   
+                //
+            } catch (Exception $e) {
+                return back()->with('error', $e->getMessage());
+            }
+            //
+       
     }
-    
+
     //
     public function edit(Request $request)
     {
         # code...
+       
+        $data = [];
+        $data["user"] = User::find(decrypt($request->ref));
+        $data["projects"] = $this->projects_model->all_Projects();;
+        $data["countries"] = DB::table("countries")->get();
         
-        $data=[];
-        $data["user"]=User::find(decrypt($request->ref));
-        $data["projects"]=project::all();
-        return view('members.edit',$data);
+        $data["additional_info"] =DB::table("users as parent")->select(
+            DB::raw("CONCAT(creator.firstname,creator.lastname) AS created"),
+            DB::raw("CONCAT(updator.firstname,updator.lastname) AS updated")
+        )
+        ->leftjoin("users as creator", "creator.createdBy", "parent.id")
+        ->leftjoin("users as updator", "updator.updatedBy",  "parent.id")
+        ->where("parent.id",decrypt($request->ref))
+            ->get();
+
+
+        return view('members.edit', $data);
     }
     //
-    public function update()
+    public function update(Request $request)
     {
         # code...
-        $data=[];
-       // return view('members.index',$data);
+        $validator = Validator::make($request->all(), [
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'role' => ['required'],
+            'phone' => 'required|digits:11',
+        ]);
+        //
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        //
+        $params = $request->except('_token');
+        $params["name"] = $request->firstname . ' ' . $request->lastname;
+        $params["role"] = $request->role;
+        $params["project_id"] = $request->project_id;
+        $params["updatedBy"] = auth()->user()->id;
+        $id = $request->id;
+        try {
+            # code...
+            $user = User::find($id);
+            $user->update($params);
+            //
+            return back()->with('success', 'Member updated successfully!');
+        } catch (Exception $e) {
+            return back()->with('success', 'Member updated successfully!');
+        }
     }
+     //
+     public function show(Request $request)
+     {
+         # code...
+         $data = [];
+         $data["user"] = User::find(decrypt($request->ref));
+         $data["projects"] = $this->projects_model->all_Projects();
+         $data["countries"] = DB::table("countries")->get();
+         return view('members.show', $data);
+     }
     //
-    public function delete()
+    
+    public function delete(Request $request)
     {
         # code...
-        $data=[];
-        return view('members.index',$data);
+        try {
+            User::find(decrypt($request->ref))->delete();
+            return back()->with('success', 'Member deleted successfully!');
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 }

@@ -11,9 +11,58 @@ $(document).ready(function(){
     //
 
     $(".delete_modal").click(function(){
-       let url=$(this).attr('data-deleteMember');
-        $("#delete_modal").show();
-       
+       $("#target_row").val($(this).attr('data-deleteMember'));
+        $("#delete_modal").modal('show');
+
+    })
+
+    $(".delete_form_modal").click(function(){
+        $("#target_row_form").val($(this).attr('data-deleteForm'));
+        $("#form_delete_modal").modal('show');
+    })
+    $(".form_delete_modal_btn").click(function(){
+        window.location.href=$("#target_row_form").val();
+    })
+
+
+    $(".del_modal_btn").click(function(){
+        window.location.href=$("#target_row").val();
+    })
+
+    //
+    $("#js_add_project_btn").click(function(){
+
     })
 
 })
+
+
+function AddProject(form_id){
+    event.preventDefault();
+    var $form = $("#" + form_id);
+    var url = $form.attr('action');
+    let profile_image = $("#project_image")[0].files[0];
+
+    //Serialize the Form
+    var values = {};
+    $.each($("#" + form_id).serializeArray(), function (i, field) {
+        values[field.name] = field.value;
+       // values["project_image"]=profile_image;
+    });
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        method: $form.attr("method"),
+        url: url,
+        data: values,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+        console.log(response)
+        }
+    });
+
+
+}

@@ -11,16 +11,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" type="image/x-icon" />
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="../../assets/fonts/fontawesome/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="{{asset('assets/fonts/fontawesome/css/fontawesome-all.min.css')}}" />
     <!-- animation css -->
-    <link rel="stylesheet" href="../../assets/plugins/animation/css/animate.min.css" />
+    <link rel="stylesheet" href="{{asset('assets/plugins/animation/css/animate.min.css')}}" />
     <!-- vendor css -->
-    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}" />
+
 </head>
 
 <body class="">
@@ -37,10 +38,10 @@
     @include('layouts.leftside_navigation')
     @include('layouts.header')
     @endif
-    
+
     <!-- [ Main Content ] start -->
-    <div class="pcoded-main-container">
-        @yield('content')
+    <div class=" @if(request()->segment(1) == "login" || request()->segment(1) =="reset-password" || request()->segment(1) =="forget-password"  ) @else pcoded-main-container @endif" id="maindiv">
+     @yield('content')
     </div>
 
 
