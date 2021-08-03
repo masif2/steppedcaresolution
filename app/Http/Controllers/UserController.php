@@ -93,10 +93,12 @@ class UserController extends Controller
             'phone' => 'required|digits:11',
             'role' => 'required',
             'status' => 'required',
+            'project_id'=>'required'
         ],
         [
             'role.required' => 'Please choose User Type!',
-            'status.required' => 'Please choose User Status!'
+            'status.required' => 'Please choose User Status!',
+            'project_id.required' => 'Please choose Project!'
          ]);
         //
         if ($validator->fails()) {
@@ -175,7 +177,15 @@ class UserController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'role' => ['required'],
             'phone' => 'required|digits:11',
-        ]);
+            'role' => 'required',
+            'status' => 'required',
+            'project_id'=>'required'
+        ],
+        [
+            'role.required' => 'Please choose User Type!',
+            'status.required' => 'Please choose User Status!',
+            'project_id.required' => 'Please choose Project!'
+         ]);
         //
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
