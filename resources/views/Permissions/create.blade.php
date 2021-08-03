@@ -17,6 +17,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="table_div_padding">
+                            @include('layouts.flash-message')
                             <form method="POST" action="{{ route('dashboard.permission.store') }}">
                                 @csrf
                                 <div class="container">
@@ -95,8 +96,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="assign_user" name="assign_user" value="">
-                                    <input type="hidden" id="unassign_user" name="unassign_user" value="">
+                                    <input type="hidden" id="assign_user" name="assigned_user" value="">
+                                    <input type="hidden" id="unassign_user" name="unassigned_user" value="">
                                     <div class="row mt-4">
                                         <div class="col-12">
                                             <button class="btn btn-primary">Save</button>
