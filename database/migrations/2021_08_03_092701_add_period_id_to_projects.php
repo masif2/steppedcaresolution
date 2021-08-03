@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddPeriodIdToProjects extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('projects', function (Blueprint $table) {
+            $table->bigInteger('period_id')->unsigned()->after('id');
+            $table->foreign('period_id')->references('id')->on('periods')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('projects', function (Blueprint $table) {
+            //
+        });
+    }
+}

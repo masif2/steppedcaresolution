@@ -21,6 +21,18 @@
                                 @csrf
                                 <div class="container">
                                     <div class="row mb-5">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                                            <div class="mb-3">
+                                                <label for="FormGroup" class="form-label">Select Period *</label>
+                                                <select class="form-control form-select" name="period_id" id="period_id" aria-label="Default select example" required>
+                                                    <option value="">Select Period</option>
+                                                    @foreach($periods as $period)
+                                                        <option value="{{$period->id}}" {{old('period_id') == $period->id ? "selected" : ""}}>{{$period->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         @if($active_user->role != 'Admin')
                                             <input type="hidden" name="project_id" value="{{$active_user->project_id}}">
                                         @else
@@ -29,9 +41,9 @@
                                                     <label for="FormGroup" class="form-label">Select Project *</label>
                                                     <select class="form-control form-select" id="project_id" name="project_id" aria-label="Default select example" {{--required--}}>
                                                         <option value="">Select Project</option>
-                                                        @foreach($projects as $project)
+                                                        {{--@foreach($projects as $project)
                                                             <option value="{{$project->id}}" {{old('project_id') == $project->id ? "selected" : ""}}>{{$project->name}}</option>
-                                                        @endforeach
+                                                        @endforeach--}}
                                                     </select>
                                                 </div>
                                             </div>
@@ -62,34 +74,29 @@
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                             <h3 class="text-center">Assigned User</h3>
                                             <div class="card mb-0">
-                                                <ul class="list-group" data-draggable="target">
+                                                <ul class="list-group" id="assign_user_section" data-draggable="target">
 
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
-                                            {{--<div class="button">
-                                                <button class="mb-4 btn btn-primary d-block"><< Assign</button>
-                                                <button class="btn btn-primary d-block">Unassign >></button>
-                                            </div>--}}
+
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                             <h3 class="text-center">Unassigned User</h3>
                                             <div class="card mb-0">
-                                                <ul class="list-group" data-draggable="target">
+                                                <ul class="list-group" id="unassign_user_section" data-draggable="target">
                                                     @foreach($users as $user)
                                                         <li class="list-group-item" data-draggable="item">
-                                                            <input type="hidden" name="assigned[]" value="{{$user->id}}">{{$user->name}}
+                                                            <input type="hidden" name="all_users[]" value="{{$user->id}}">{{$user->name}}
                                                         </li>
                                                     @endforeach
-                                                    {{--<li class="list-group-item"  data-draggable="item">A second item</li>
-                                                    <li class="active list-group-item"  data-draggable="item">A third item</li>
-                                                    <li class="list-group-item"  data-draggable="item">A fourth item</li>
-                                                    <li class="list-group-item"  data-draggable="item">And a fifth one</li>--}}
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" id="assign_user" name="assign_user" value="">
+                                    <input type="hidden" id="unassign_user" name="unassign_user" value="">
                                     <div class="row mt-4">
                                         <div class="col-12">
                                             <button class="btn btn-primary">Save</button>
@@ -105,7 +112,7 @@
         </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    @include('layouts.dynamic_dropdowns')
     <script type="text/javascript">
         (function()
         {
@@ -179,60 +186,24 @@
             document.addEventListener('dragend', function(e)
             {
                 item = null;
+                const assign_array = [];
+                const unassign_array = [];
+                $("#assign_user_section").children('li').each(function(i,v){
+                    assign_array.push($(this).children('input').val());
+                });
+
+                $("#unassign_user_section").children('li').each(function(i,v){
+                    unassign_array.push($(this).children('input').val());
+                });
+                $("#assign_user").val(assign_array);
+                $("#unassign_user").val(unassign_array);
+                console.log(assign_array);
+                console.log(unassign_array);
 
             }, false);
 
         })();
 
     </script>
-    <script>
 
-        // get forms
-        $('select#project_id').change(function(){
-            $(this).find("option:selected").each(function(){
-                var selected_option = $(this).attr("value");
-                if(selected_option){
-                    $.ajax({
-                        type:"get",
-                        url:"{{url('/get-forms')}}/"+selected_option,
-                        success:function(response)
-                        {
-                            if(response)
-                            {
-                                $('#form_id').empty();
-                                $('#form_id').append('<option value="">Select Form</option>');
-                                $.each(response,function(key,value){
-                                    $('#form_id').append('<option value="'+key+'">'+value+'</option>');
-                                });
-                            }
-                        }
-                    });
-                }
-            });
-        }).change();
-
-        // get streams
-        $('select#form_id').change(function(){
-            $(this).find("option:selected").each(function(){
-                var selected_option = $(this).attr("value");
-                if(selected_option){
-                    $.ajax({
-                        type:"get",
-                        url:"{{url('/get-streams')}}/"+selected_option,
-                        success:function(response)
-                        {
-                            if(response)
-                            {
-                                $('#stream_id').empty();
-                                $('#stream_id').append('<option value="">Select Form</option>');
-                                $.each(response,function(key,value){
-                                    $('#stream_id').append('<option value="'+key+'">'+value+'</option>');
-                                });
-                            }
-                        }
-                    });
-                }
-            });
-        }).change();
-    </script>
 @endsection

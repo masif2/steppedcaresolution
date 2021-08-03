@@ -38,6 +38,7 @@ class ProjectController extends Controller
        //
         $validator = Validator::make($request->all(), [
             'project_name' => ['required', 'string', 'max:255'],
+            'period_id' => ['required'],
             'project_image' => 'required|image|mimes:png,jpg,jpeg|max:2000',
         ]);
         //
@@ -48,6 +49,7 @@ class ProjectController extends Controller
 
         $params=$request->except('_token');
         $params["name"]=$request->project_name;
+        $params["period_id"]=$request->period_id;
          //
         if ($request->file('project_image')) {
             $photo = $request->file('project_image');
@@ -55,14 +57,13 @@ class ProjectController extends Controller
             $extension=$photo->getClientOriginalExtension();
             $path = $request->file('project_image')->storeAs('uploads', $fileName);
             $params['image']='/storage/'.$path;
-           
-            }
+        }
         //
         $project=new project;
         $project->create($params);
         # code...
         return back()->with('success','Project created successfully!');
-        
+
 
     }
 

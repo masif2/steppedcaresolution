@@ -92,3 +92,4 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
 
 Route::get('/get-forms/{id}', [\App\Http\Controllers\PermissionsController::class, 'getForms']);
 Route::get('/get-streams/{id}', [\App\Http\Controllers\PermissionsController::class, 'getStreams']);
+Route::get('/get-projects/{id}', [\App\Http\Controllers\PermissionsController::class, 'getProjects']);

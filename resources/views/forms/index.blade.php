@@ -22,28 +22,38 @@
                                     @csrf
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-xl-5 col-lg-5 col-md-5 col-12">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-12">
                                                 <div class="mb-3">
-                                                    <label for="newform" class="form-label">Create New Form *</label>
+                                                    <label for="newform" class="form-label">Form Name *</label>
                                                     <input type="text" class="form-control" id="newform" name="name" value="{{ old('name') }}" required placeholder="Month 1" aria-describedby="newform">
                                                 </div>
                                             </div>
+
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-12">
+                                                <div class="mb-3">
+                                                    <label for="FormGroup" class="form-label">Select Period *</label>
+                                                    <select class="form-control form-select" name="period_id" id="period_id" aria-label="Default select example" required>
+                                                        <option value="">Select Period</option>
+                                                        @foreach($periods as $period)
+                                                            <option value="{{$period->id}}" {{old('period_id') == $period->id ? "selected" : ""}}>{{$period->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             @if($active_user->role != 'Admin')
                                                 <input type="hidden" name="project_id" value="{{$active_user->project_id}}">
                                             @else
-                                                <div class="col-xl-5 col-lg-5 col-md-5 col-12">
+                                                <div class="col-xl-3 col-lg-3 col-md-3 col-12">
                                                     <div class="mb-3">
                                                         <label for="FormGroup" class="form-label">Select Project *</label>
-                                                        <select class="form-control form-select" name="project_id" aria-label="Default select example" required>
+                                                        <select class="form-control form-select" name="project_id" id="project_id" aria-label="Default select example" required>
                                                             <option value="">Select Project</option>
-                                                            @foreach($projects as $project)
-                                                                <option value="{{$project->id}}" {{old('project_id') == $project->id ? "selected" : ""}}>{{$project->name}}</option>
-                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
                                             @endif
-                                            <div class="col-xl-2 col-lg-2 col-md-2 col-12">
+                                            <div class="col-xl-3 col-lg-3 col-md-3 col-12">
                                                 <label for="newform" class="form-label hide-on-mobile" style="visibility: hidden;display: block;">Create New Form</label>
                                                 <button class="btn btn-primary">Save</button>
                                             </div>
@@ -82,7 +92,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($forms as $form)
+                                        @forelse($forms as $form)
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
                                                 <td><a href="#">{{$form->form_name}}</a></td>
@@ -96,7 +106,11 @@
                                                     @include('forms.partials.update_form_modal')
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">No form added</td>
+                                            </tr>
+                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -125,4 +139,6 @@
     </div>
 
     @include('layouts.pagination')
+
+    @include('layouts.dynamic_dropdowns')
 @endsection

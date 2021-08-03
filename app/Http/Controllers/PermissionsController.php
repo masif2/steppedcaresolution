@@ -21,9 +21,11 @@ class PermissionsController extends Controller
         }else{
             $forms = (object) array();
         }
+
+        $periods = Period::all();
         $projects = project::all();
         $users = User::all();
-        return view("permissions.create")->with(compact('projects','active_user', 'forms', 'users'));
+        return view("permissions.create")->with(compact('projects','active_user', 'forms', 'users', 'periods'));
     }
 
     /**
@@ -34,6 +36,7 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->input());
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'start_date' => 'required',
@@ -55,6 +58,12 @@ class PermissionsController extends Controller
             return back()->with('error', $e->getMessage());
         }
         return redirect()->route('dashboard.periods', [$request->form_id])->with('success', 'Period created successfully!');
+    }
+
+    public function getProjects($period_id)
+    {
+        $projects = project::where('period_id', $period_id)->pluck("name","id");
+        return response()->json($projects);
     }
 
     public function getForms($project_id)
