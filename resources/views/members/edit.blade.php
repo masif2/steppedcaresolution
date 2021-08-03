@@ -118,7 +118,7 @@
                                                 <label for="Status" class="form-label">Status</label>
                                                 <select class="form-control form-select" name="status" id="status" aria-label="Default select example">
                     
-                                                    <option selected>Select Status</option>
+                                                    <option selected disabled>Select Status</option>
                                                     @foreach(user_status() as $data)
                                                     <option value="{{ $data}}"  {{$user->status==$data?"selected":""}}>{{ $data}}</option>
                                                     @endforeach

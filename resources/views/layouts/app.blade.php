@@ -33,18 +33,27 @@
     </div>
     <!-- [ Pre-loader ] End -->
 
-    @guest
-    @else
-    @include('layouts.leftside_navigation')
-    @include('layouts.header')
+    @if(Auth::check())
+        @if(Auth::user()->role=="Admin" || Auth::user()->role=="Manager")
+            @include('layouts.leftside_navigation')
+            @include('layouts.header')
+        @else
+            @include('layouts.user_header')
+        @endif
     @endif
 
     <!-- [ Main Content ] start -->
-    <div class=" @if(request()->segment(1) == "login" || request()->segment(1) =="reset-password" || request()->segment(1) =="forget-password"  ) @else pcoded-main-container @endif" id="maindiv">
-     @yield('content')
+    <div class=" @if(request()->segment(1) == "login" || request()->segment(1) =="reset-password" || request()->segment(1) =="forget-password"  ) @else pcoded-main-container @endif 
+        @if(Auth::check())
+            @if(Auth::user()->role=="User")
+                new-pcoded-header 
+            @endif
+        @endif"
+
+        id="maindiv">
+        @yield('content')
     </div>
-
-
+    
     @include('layouts.footer')
 
 </body>
