@@ -57,6 +57,8 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
         Route::post('/store', [App\Http\Controllers\StreamController::class,'store'])->name('dashboard.stream.store');
         Route::post('/update', [App\Http\Controllers\StreamController::class,'update'])->name('dashboard.stream.update');
         Route::get('/stream/{id?}', [App\Http\Controllers\StreamController::class,'delete'])->name('dashboard.stream.delete');
+        Route::get('/stream_update', [App\Http\Controllers\StreamController::class,'stream_update'])->name('dashboard.stream.stream_update');
+        Route::get('/stream_update_two', [App\Http\Controllers\StreamController::class,'stream_update_two'])->name('dashboard.stream.stream_update_two');
     });
 
     Route::group(['prefix' => 'project',  'middleware' => 'auth'], function(){
@@ -76,7 +78,7 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
         Route::post('/store', [App\Http\Controllers\PeriodController::class,'store'])->name('dashboard.period.store');
         Route::get('/edit/{id}', [App\Http\Controllers\PeriodController::class,'edit'])->name('dashboard.period.edit');
         Route::post('/update{id}', [App\Http\Controllers\PeriodController::class,'update'])->name('dashboard.period.update');
-        Route::get('/user/{id?}', [App\Http\Controllers\PeriodController::class,'delete'])->name('dashboard.period.delete');
+        Route::get('/period/{id?}', [App\Http\Controllers\PeriodController::class,'delete'])->name('dashboard.period.delete');
     });
 
     Route::group(['prefix' => 'reports',  'middleware' => 'auth'], function(){
@@ -85,6 +87,7 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
 
     Route::group(['prefix' => 'permissions',  'middleware' => 'auth'], function(){
         Route::get('/create', [App\Http\Controllers\PermissionsController::class,'create'])->name('dashboard.permissions');
+        Route::post('/store', [App\Http\Controllers\PermissionsController::class,'store'])->name('dashboard.permission.store');
     });
 
 });

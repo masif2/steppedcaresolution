@@ -24,6 +24,14 @@ $(document).ready(function(){
         window.location.href=$("#target_row_form").val();
     })
 
+    $(".delete_period_modal").click(function(){
+        $("#target_row_period").val($(this).attr('data-deleteForm'));
+        $("#period_delete_modal").modal('show');
+    })
+    $(".period_delete_modal_btn").click(function(){
+        window.location.href=$("#target_row_period").val();
+    })
+
 
     $(".del_modal_btn").click(function(){
         window.location.href=$("#target_row").val();

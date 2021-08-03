@@ -86,32 +86,19 @@ class UserController extends Controller
     public function store(Request  $request)
     {
         //
-/*
-        $data['email']= 'masif2024@gmail.com';
-            $data['url']=(route('activate_user_account',encrypt($data['email'])));
-            $data['subject'] = "Verify Your Email Address";
-            $data['msg'] = "Welcome to Stepped Care Solutions";
-            $data['username']  = "m asif ";
-
-            try {
-                Mail::send('emails.reset', $data, function($message) use ($data){ 
-                    $message->to(str_replace("\xE2\x80\x8B", "",  $data['email']))->from('masif@egenienext.com', 'Stepped Care Solutions' )->subject($data['subject']);
-                });
-                
-            } catch (Exception $e) {
-                return back()->with('error', $e->getMessage());
-            }
-        die();
-*/
         $validator = Validator::make($request->all(), [
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => 'required|digits:11',
             'role' => 'required',
+            'status' => 'required',
+            'project_id'=>'required'
         ],
         [
-            'role.required' => 'Please choose User Type!'
+            'role.required' => 'Please choose User Type!',
+            'status.required' => 'Please choose User Status!',
+            'project_id.required' => 'Please choose Project!'
          ]);
         //
         if ($validator->fails()) {
@@ -190,7 +177,15 @@ class UserController extends Controller
             'lastname' => ['required', 'string', 'max:255'],
             'role' => ['required'],
             'phone' => 'required|digits:11',
-        ]);
+            'role' => 'required',
+            'status' => 'required',
+            'project_id'=>'required'
+        ],
+        [
+            'role.required' => 'Please choose User Type!',
+            'status.required' => 'Please choose User Status!',
+            'project_id.required' => 'Please choose Project!'
+         ]);
         //
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();

@@ -97,7 +97,7 @@ class PeriodController extends Controller
             $input = $request->except('_token');
             $input['updated_by'] = auth()->user()->id;
 
-            Period::where('id', $request->id)->update($input);
+            Period::where('id', $id)->update($input);
 
         } catch (\Exception $e) {
 
@@ -106,5 +106,15 @@ class PeriodController extends Controller
         }
         return redirect()->route('dashboard.periods')->with('success', 'Period updated successfully!');
 >>>>>>> f3bb551c62d450a7497cb96d64d548716ee3e581
+    }
+
+    public function delete(Request $request)
+    {
+        try {
+            Period::find(decrypt($request->ref))->delete();
+            return back()->with('success', 'Period deleted successfully!');
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
+        }
     }
 }

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Form;
+use App\Models\Period;
 use App\Models\project;
 use App\Models\Stream;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PermissionsController extends Controller
 {
@@ -20,8 +22,39 @@ class PermissionsController extends Controller
             $forms = (object) array();
         }
         $projects = project::all();
-        return view("permissions.create")->with(compact('projects','active_user', 'forms'));
+        $users = User::all();
+        return view("permissions.create")->with(compact('projects','active_user', 'forms', 'users'));
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        try {
+            $input = $request->except('_token');
+            $input['created_by'] = auth()->user()->id;
+            Period::create($input);
+
+        } catch (\Exception $e) {
+
+            \Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
+            return back()->with('error', $e->getMessage());
+        }
+        return redirect()->route('dashboard.periods', [$request->form_id])->with('success', 'Period created successfully!');
     }
 
     public function getForms($project_id)
@@ -35,5 +68,4 @@ class PermissionsController extends Controller
         $streams = Stream::where('form_id', $form_id)->pluck("name","id");
         return response()->json($streams);
     }
-
 }
