@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Form;
 use App\Models\Period;
+use App\Models\Permission;
 use App\Models\project;
 use App\Models\Stream;
 use App\Models\User;
@@ -38,11 +39,11 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'start_date' => 'required',
-            'end_date' => 'required',
+            'period_id' => ['required'],
+            'project_id' => ['required'],
+            'form_id' => ['required'],
+            'stream_id' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -52,14 +53,14 @@ class PermissionsController extends Controller
         try {
             $input = $request->except('_token');
             $input['created_by'] = auth()->user()->id;
-            Period::create($input);
+            Permission::create($input);
 
         } catch (\Exception $e) {
 
             \Log::emergency("File:" . $e->getFile(). "Line:" . $e->getLine(). "Message:" . $e->getMessage());
             return back()->with('error', $e->getMessage());
         }
-        return redirect()->route('dashboard.periods', [$request->form_id])->with('success', 'Period created successfully!');
+        return redirect()->route('dashboard.permissions', [$request->form_id])->with('success', 'permissions created successfully!');
     }
 
     public function getProjects($period_id)
