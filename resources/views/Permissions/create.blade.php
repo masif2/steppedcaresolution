@@ -62,7 +62,7 @@
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                             <h3 class="text-center">Assigned User</h3>
                                             <div class="card mb-0">
-                                                <ul class="list-group" data-draggable="target">
+                                                <ul class="list-group" id="assign_user_section" data-draggable="target">
 
                                                 </ul>
                                             </div>
@@ -76,7 +76,7 @@
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                             <h3 class="text-center">Unassigned User</h3>
                                             <div class="card mb-0">
-                                                <ul class="list-group" data-draggable="target">
+                                                <ul class="list-group" id="unassign_user_section" data-draggable="target">
                                                     @foreach($users as $user)
                                                         <li class="list-group-item" data-draggable="item">
                                                             <input type="hidden" name="assigned[]" value="{{$user->id}}">{{$user->name}}
@@ -90,6 +90,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" id="assign_user" name="assign_user" value="">
+                                    <input type="hidden" id="unassign_user" name="unassign_user" value="">
                                     <div class="row mt-4">
                                         <div class="col-12">
                                             <button class="btn btn-primary">Save</button>
@@ -179,6 +181,21 @@
             document.addEventListener('dragend', function(e)
             {
                 item = null;
+                const assign_array = [];
+                const unassign_array = [];
+
+                $("#assign_user_section").children('li').each(function(i,v){
+                    assign_array.push($(this).children('input').val());
+                });
+                
+                $("#unassign_user_section").children('li').each(function(i,v){
+                    unassign_array.push($(this).children('input').val());
+                });
+
+                $("#assign_user").val(assign_array);
+                $("#unassign_user").val(unassign_array);
+                console.log(assign_array);
+                console.log(unassign_array);
 
             }, false);
 
