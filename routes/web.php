@@ -57,6 +57,8 @@ Route::group(['prefix' => 'dashboard',  'middleware' => 'auth'], function(){
         Route::post('/store', [App\Http\Controllers\StreamController::class,'store'])->name('dashboard.stream.store');
         Route::post('/update', [App\Http\Controllers\StreamController::class,'update'])->name('dashboard.stream.update');
         Route::get('/stream/{id?}', [App\Http\Controllers\StreamController::class,'delete'])->name('dashboard.stream.delete');
+        Route::get('/stream_update', [App\Http\Controllers\StreamController::class,'stream_update'])->name('dashboard.stream.stream_update');
+        Route::get('/stream_update_two', [App\Http\Controllers\StreamController::class,'stream_update_two'])->name('dashboard.stream.stream_update_two');
     });
 
     Route::group(['prefix' => 'project',  'middleware' => 'auth'], function(){
