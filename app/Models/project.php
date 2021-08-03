@@ -17,6 +17,7 @@ class project extends Model
      */
     protected $fillable = [
         'name',
+        'period_id',
         'image'
     ];
 

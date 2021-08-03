@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Form;
+use App\Models\Period;
 use App\Models\project;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -33,8 +34,9 @@ class FormController extends Controller
             ->paginate($perPage);
 
         $projects = project::all();
+        $periods = Period::all();
         $row_show = $perPage;
-        return view('forms.index')->with(compact('projects', 'forms', 'active_user', 'row_show'));
+        return view('forms.index')->with(compact('projects', 'forms', 'active_user', 'row_show', 'periods'));
     }
 
 

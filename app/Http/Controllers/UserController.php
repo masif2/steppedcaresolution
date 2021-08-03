@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Period;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\project;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Mail;
 use Illuminate\Support\Str;
-use Carbon\Carbon; 
+use Carbon\Carbon;
 class UserController extends Controller
 {
     protected $projects_model;
@@ -70,14 +71,15 @@ class UserController extends Controller
         return view('members.index', $data);
     }
 
-   
+
 
     //
     public function create()
     {
         # code...
         $data = [];
-        $data["projects"] = $this->projects_model->all_Projects();;
+        $data["projects"] = $this->projects_model->all_Projects();
+        $data["periods"] = Period::all();
         $data["countries"] = DB::table("countries")->get();
         return view('members.create', $data);
     }
@@ -112,7 +114,7 @@ class UserController extends Controller
         $params["role"] = $request->role;
         $params["password"] = bcrypt('12345678');
         $params["createdBy"] = auth()->user()->id;
-        
+
             # code...
             $user = new User;
             $user->create($params);
@@ -125,37 +127,37 @@ class UserController extends Controller
             $data['msg'] = "Welcome to Stepped Care Solutions";
             $data['username']  = $request->firstname. ' '.$request->lastname;
 
-          
+
             DB::table('password_resets')->insert([
-                'email' => $request->email, 
-                'token' => $token, 
+                'email' => $request->email,
+                'token' => $token,
                 'created_at' => Carbon::now()
               ]);
 
             try {
-                Mail::send('emails.reset', $data, function($message) use ($data){ 
+                Mail::send('emails.reset', $data, function($message) use ($data){
                     $message->to($data['email'])->from('masif@egenienext.com', 'Stepped Care Solutions' )->subject($data['subject']);
                 });
-                
-                return back()->with('success', 'Member created successfully!');   
+
+                return back()->with('success', 'Member created successfully!');
                 //
             } catch (Exception $e) {
                 return back()->with('error', $e->getMessage());
             }
             //
-       
+
     }
 
     //
     public function edit(Request $request)
     {
         # code...
-       
+
         $data = [];
         $data["user"] = User::find(decrypt($request->ref));
         $data["projects"] = $this->projects_model->all_Projects();;
         $data["countries"] = DB::table("countries")->get();
-        
+
         $data["additional_info"] =DB::table("users as parent")->select(
             DB::raw("CONCAT(creator.firstname,creator.lastname) AS created"),
             DB::raw("CONCAT(updator.firstname,updator.lastname) AS updated")
@@ -218,7 +220,7 @@ class UserController extends Controller
          return view('members.show', $data);
      }
     //
-    
+
     public function delete(Request $request)
     {
         # code...

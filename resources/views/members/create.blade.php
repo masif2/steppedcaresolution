@@ -37,7 +37,7 @@
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="email" class="form-label">Email *</label>
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" aria-describedby="email" value="{{ old('email') }}" required> 
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" aria-describedby="email" value="{{ old('email') }}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
@@ -70,7 +70,7 @@
                                                 <input type="text" class="form-control" id="state" name="state" placeholder="State" aria-describedby="state" value="{{ old('state') }}">
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="Country" class="form-label">Country</label>
@@ -95,7 +95,7 @@
                                                 <select class="form-control form-select" name="project_id" id="project_id" aria-label="Default select example">
                                                     <option selected disabled>Select Project</option>
                                                     @foreach($projects as $key=>$data)
-                                                    <option value="{{$data->id}}" {{old('project_id')== $data->id ? "selected" :""}}>{{$data->name}}</option>
+                                                        <option value="{{$data->id}}" {{old('project_id')== $data->id ? "selected" :""}}>{{$data->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -113,7 +113,7 @@
                                                     @foreach(users_roles() as $data)
                                                     <option value="{{ $data}}" {{old('role')== $data ? "selected" :""}}>{{ $data}}</option>
                                                     @endforeach
-                                                    
+
                                                 </select>
                                             </div>
                                         </div>
@@ -130,7 +130,7 @@
                                         </div>
                                     </div>
                                 </div>
-                    
+
                             </div>
                             <button class="btn btn-primary">Save</button>
                             <button type="reset" class="btn btn-light text-white">Cancel</button>
@@ -145,7 +145,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                    <form method="POST" action="{{ route('dashboard.project.store') }}"  enctype="multipart/form-data" id="js_add_project"> 
+                                    <form method="POST" action="{{ route('dashboard.project.store') }}"  enctype="multipart/form-data" id="js_add_project">
                                     @csrf
                                             <div class="row">
                                                 <div class="col-lg-12 col-xl-12 col-md-12 col-12">
@@ -154,11 +154,20 @@
                                                         <input type="text" class="form-control" id="project_name" name="project_name" aria-describedby="project_name">
                                                     </div>
                                                     <div class="mb-4">
+                                                        <label for="Type" class="form-label">Periods</label>
+                                                        <select class="form-control form-select" name="period_id" id="period_id" aria-label="Default select example" required>
+                                                            <option selected disabled>Select Period</option>
+                                                            @foreach($periods as $period)
+                                                                <option value="{{$period->id}}" {{old('period_id')== $period->id ? "selected" :""}}>{{$period->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-4">
                                                         <div class="custom-file mb-3">
                                                             <label>Image</label>
 
                                                             <div class="row">
-                                                            
+
                                                                <div class="col-sm-9 col-xs-9 col-md-9">
                                                                     <input type="text" class="file_upload_input form-control"  aria-describedby="project_image">
                                                                 </div>
