@@ -1,6 +1,5 @@
-<!-- [ Header ] start -->
-<header class="navbar pcoded-header navbar-expand-lg navbar-light headerpos-fixed ">
-        <div class="m-header">
+<header class="navbar pcoded-header new-pcoded-header navbar-expand-lg navbar-light headerpos-fixed">
+<div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
             <a href="index.html" class="b-brand mob_log_anchor">
                 <img class="mob_header" src="{{asset('assets/images/logo_new.png')}}" alt="" class="logo images">
@@ -14,7 +13,7 @@
             <ul class="navbar-nav  w-100">
                 <li class="nav-item">
                     <div class="main-search open">
-                        <img class="header_icon_image" src="{{asset('assets/images/header_icon.png')}}" />
+                    <img class="mob_header" src="{{asset('assets/images/logo_new.png')}}" alt="" class="logo images">
                     </div>
                 </li>
                 <li class="second_li">

@@ -188,6 +188,7 @@
                 item = null;
                 const assign_array = [];
                 const unassign_array = [];
+
                 $("#assign_user_section").children('li').each(function(i,v){
                     assign_array.push($(this).children('input').val());
                 });
@@ -195,6 +196,7 @@
                 $("#unassign_user_section").children('li').each(function(i,v){
                     unassign_array.push($(this).children('input').val());
                 });
+
                 $("#assign_user").val(assign_array);
                 $("#unassign_user").val(unassign_array);
                 console.log(assign_array);

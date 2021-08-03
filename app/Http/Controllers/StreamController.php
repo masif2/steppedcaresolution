@@ -107,7 +107,12 @@ class StreamController extends Controller
     {
         //
     }
-
+    public function stream_update(){
+        return view('streams.stream_update');
+    }
+    public function stream_update_two(){
+        return view('streams.stream_update_two');
+    }
     /**
      * Remove the specified resource from storage.
      *

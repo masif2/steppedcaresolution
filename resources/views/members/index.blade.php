@@ -56,7 +56,7 @@
                         @include('layouts.flash-message')
                         <div class="card mb-0">
                             <div class="table-responsive">
-                                <table class="table   table_margin_adj">
+                                <table class="table   user_table table_margin_adj">
                                     <thead>
                                         <tr>
                                             <td> Name </td>

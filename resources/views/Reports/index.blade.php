@@ -53,7 +53,7 @@
 
                             <div class="card mb-0">
                                 <div class="table-responsive">
-                                    <table class="table table_margin_adj">
+                                    <table class="table report_table table_margin_adj">
                                         <thead>
                                         <tr>
                                             <td class="forward_icon_td"></td>
@@ -76,7 +76,6 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td style="padding:0px"></td>
                                                 <td colspan="3" style="padding:0px  !important">
@@ -253,5 +252,12 @@
                 }
             }, 100);
         })
+jQuery('.report_table tbody tr.clickable').each(function(){
+    if( jQuery(this).next('tr').length != 0)
+    {
+        jQuery(this).find('td').css('border-bottom','0');
+        
+    } 
+});
     </script>
 @endsection

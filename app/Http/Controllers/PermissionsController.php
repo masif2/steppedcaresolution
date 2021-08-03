@@ -25,7 +25,9 @@ class PermissionsController extends Controller
         $periods = Period::all();
         $projects = project::all();
         $users = User::all();
-        return view("permissions.create")->with(compact('projects','active_user', 'forms', 'users', 'periods'));
+
+        return view("Permissions.create")->with(compact('projects','active_user', 'forms', 'users', 'periods'));
+
     }
 
     /**

@@ -42,7 +42,7 @@
                                                 <td>Start Date</td>
                                                 <td>End Date</td>
                                                 <td>Status</td>
-                                                <td>Actions</td>
+                                                <td></td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -55,7 +55,7 @@
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
                                                         <a href="{{route('dashboard.period.edit', [encrypt($period->id)])}}" type="button" class="btn table_btn update_btn text-white">Update</a>
-                                                        <button type="button" class="btn table_btn delete_btn text-white delete_period_modal" data-toggle="modal" data-deleteForm="{{route('dashboard.period.delete')}}{{'?ref='.encrypt($period->id)}}">Delete</button>
+                                                        <button type="button" class="btn table_btn delete_btn text-white delete_form_modal" data-toggle="modal" data-deleteForm="{{route('dashboard.period.delete')}}{{'?ref='.encrypt($period->id)}}">Delete</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -68,9 +68,6 @@
                                     </table>
                                 </div>
                             </div>
-
-                            {{-- Delete Form Modal--}}
-                            @include('periods.partials.delete_modal')
 
                             <div class=" flex-columns flex-setting mob_margin_pagination">
                                 <form>

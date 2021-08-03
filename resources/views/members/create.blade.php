@@ -121,7 +121,7 @@
                                             <div class="mb-4">
                                                 <label for="Status" class="form-label">Status</label>
                                                 <select class="form-control form-select" name="status" id="status" aria-label="Default select example" required>
-                                                    <option selected>Select Status</option>
+                                                    <option selected disabled>Select Status</option>
                                                     @foreach(user_status() as $data)
                                                     <option value="{{ $data}}" {{old('status')== $data ? "selected" :""}}>{{ $data}}</option>
                                                     @endforeach
@@ -201,7 +201,7 @@
 <script>
 function createproject(){
     document.getElementById("js_add_project").submit(function(){
-        alert(1)
+        
     });
 
 }
