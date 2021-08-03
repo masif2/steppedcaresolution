@@ -2638,8 +2638,7 @@ pre[class*="language-"]:before {
     position: relative;
     top: 0;
 }
-
-.pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu>a:after {
+/* .pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu>a:after {
     content: "\e844";
     font-family: "feather";
     font-size: 19px;
@@ -2648,8 +2647,7 @@ pre[class*="language-"]:before {
     top: 9px;
     right: 7px;
     transition: 0.3s ease-in-out;
-}
-
+} */
 .pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu.pcoded-trigger>a:after {
     -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
@@ -2803,6 +2801,7 @@ pre[class*="language-"]:before {
 .pcoded-navbar.navbar-collapsed .pcoded-inner-navbar>li>a>.pcoded-micon+.pcoded-mtext {
     position: absolute;
     top: 11px;
+    left: 50px;
 }
 
 .pcoded-navbar.navbar-collapsed .pcoded-inner-navbar>li>a>.pcoded-mtext {
@@ -10080,7 +10079,6 @@ table.sub_table td:last-child {
 .image_white {
     display: none;
 }
-
 .tablinks:hover .image_black {
     display: none;
 }
@@ -10093,7 +10091,6 @@ table.sub_table td:last-child {
 .tablinks:hover .image_white {
     display: inline-block;
 }
-
 .user_header_logo {
     width: 200px;
 }
@@ -10112,32 +10109,30 @@ table.sub_table td:last-child {
     color:white;
 }
 table.table_margin_adj thead tr td:last-child{
-    width:35% !important;
+    width:40% !important;
 }
-
 [data-draggable="target"]
 {
     float:left;
     list-style-type:none;
-
     width:100%;
     height:12.5em;
     overflow-y:auto;
-
     margin:0 0.5em 0.5em 0;
     padding:0.5em;
-
     border:2px solid #888;
     border-radius:0.2em;
-
 }
-
-
+.table_margin_adj tbody tr:last-child td{
+    border-bottom: unset;
+}
+.report_table tbody tr.clickable:last-child td{
+    border-bottom: unset;
+}
 [data-draggable="item"]
 {
     display:block;
     list-style-type:none;
-
     /* margin:0 0 2px 0;
     padding:0.2em 0.4em; */
     padding: .75rem 1.25rem;
@@ -10152,6 +10147,12 @@ table.table_margin_adj thead tr td:last-child{
 .new-pcoded-header {
     width: calc(100%) !important;
     margin-left: 0px !important;
+}
+.user_table thead tr td:nth-child(2){
+    width:22%;
+}
+.navbar-collapsed .b-brand{
+    width:20px;
 }
 @media only screen and (min-width:768px) and (max-width:1000px) {
     .grid_container {
@@ -10308,4 +10309,9 @@ table.table_margin_adj thead tr td:last-child{
     .add_stream_btn_two {
         width: 20%;
     }
+}
+@media only screen and (min-width: 1200px){
+.container {
+    max-width: 100% !important;
+}
 }
