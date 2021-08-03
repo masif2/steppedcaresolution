@@ -17,7 +17,7 @@ function common_helper_split_query_string(){
         }
         return vars;
 }
- function get_per_page() {
+ function get_per_page(){
             var e = document.getElementById("show_rows");
             var value = e.options[e.selectedIndex].value;
             var interest = $('ul').find('li.active').children().attr('href');
@@ -36,7 +36,13 @@ function common_helper_split_query_string(){
             window.location.href =$(this).attr("data-link")+"&show_rows=" + $("#show_rows option:selected").val();
 
         })
+    $(".header_icon_image").click(function(){
+        $(".pcoded-navbar").toggleClass("navbar-collapsed");
+    })
 </script>
+<script>
+  
+<script>
 
 
 

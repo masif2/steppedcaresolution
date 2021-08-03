@@ -255,12 +255,9 @@
 jQuery('.report_table tbody tr.clickable').each(function(){
     if( jQuery(this).next('tr').length != 0)
     {
-       
-            jQuery(this).find('td').css('border-bottom','0');
-       
+        jQuery(this).find('td').css('border-bottom','0');
         
     } 
-
 });
     </script>
 @endsection
