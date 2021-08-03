@@ -2639,7 +2639,7 @@ pre[class*="language-"]:before {
     top: 0;
 }
 
-.pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu>a:after {
+/* .pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu>a:after {
     content: "\e844";
     font-family: "feather";
     font-size: 19px;
@@ -2648,7 +2648,7 @@ pre[class*="language-"]:before {
     top: 9px;
     right: 7px;
     transition: 0.3s ease-in-out;
-}
+} */
 
 .pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu.pcoded-trigger>a:after {
     -webkit-transform: rotate(90deg);
