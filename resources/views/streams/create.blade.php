@@ -543,7 +543,7 @@
                                                     <div class="col-sm-12">
                                                         <div class="card mb-0">
                                                             <div class="table-responsive">
-                                                                <table class="table  table-bordered  table_margin_adj">
+                                                                <table class="table  table-bordered stream_data_table table_margin_adj">
                                                                     <thead>
                                                                     <tr>
                                                                         <td> Name </td>
@@ -554,7 +554,7 @@
                                                                     </thead>
                                                                     <tbody>
                                                                     <tr>
-                                                                        <td scope="row"> Registered User</td>
+                                                                        <td scope="row"> Registered User </td>
                                                                         <td> Row </td>
                                                                         <td> 1</td>
                                                                         <td>
@@ -607,7 +607,7 @@
                             </div>
                             <div class="card mb-0">
                                 <div class="table-responsive">
-                                    <table class="table   table-bordered  table_margin_adj" id="myTable">
+                                    <table class="table   table-bordered stream_primary_table table_margin_adj" id="myTable">
                                         <thead>
                                         <tr>
                                             <td> Name </td>
@@ -615,7 +615,7 @@
                                             <td> Required</td>
                                             <td> Duplicate</td>
                                             <td> Cumulative Value</td>
-                                            <td> Order <img class="arrow_icon_adj" src="../assets/images/doubleArrow.png" /></td>
+                                            <td> Order <img class="arrow_icon_adj"  src="{{url('/assets/images/doubleArrow.png')}}" /></td>
                                             <td class="add_stream_btn_two"> Actions </td>
                                         </tr>
                                         </thead>

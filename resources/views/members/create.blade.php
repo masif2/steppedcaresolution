@@ -102,7 +102,7 @@
                                         </div>
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12 stream_update_title">
                                             <div>
-                                                <b data-toggle="modal" data-target="#exampleModal"><a class="add_icon"><span><i class="fas fa-plus-circle"></i></span><span> Add Project</span></a></b>
+                                                <b data-toggle="modal" data-target="#exampleModal"><a class="add_icon" style="cursor:pointer"><span><i class="fas fa-plus-circle"></i></span><span> Add Project</span></a></b>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">

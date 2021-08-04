@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-8">
+                                <div class="col-sm-7">
                                     <div class="form-group form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
@@ -36,7 +36,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-sm-4 text-body font-weight-bold">
+                                <div class="col-sm-5 text-body font-weight-bold">
                                     <a class="text-body under-line" href="{{route('forget.password.get')}}">{{ __('Forgot Password ?') }}</a>
                                 </div>
                             </div>
