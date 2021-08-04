@@ -141,7 +141,7 @@
 
                             </div>
                             <button class="btn btn-primary">Save</button>
-                            <button type="reset" class="btn btn-light text-white">Cancel</button>
+                            <a href="{{route('dashboard.users')}}" type="reset" class="btn btn-light text-white">Cancel</a>
                         </form>
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -168,7 +168,7 @@
                                                             <div class="row">
 
                                                                <div class="col-sm-9 col-xs-9 col-md-9">
-                                                                   <label for="file-upload" class="custom-file-upload">
+                                                                   <label for="file-upload" class=" btn btn-light text-black custom-file-upload" >
                                                                        <i class="fa fa-cloud-upload"></i> Upload Image
                                                                    </label>
                                                                    <input class="file_upload_custom" id="file-upload" name='project_image' type="file" style="display:none;">
@@ -182,7 +182,7 @@
                                     </div>
                                     <div class="modal-footer project_modal_footer users_modal_footer">
                                         <button type="button" class="btn btn-primary" onclick="createproject('js_add_project')">Add</button>
-                                        <a href="{{route('dashboard.users')}}" class="btn btn-light text-white" data-dismiss="modal">Cancel</a>
+                                        <button class="btn btn-light text-white" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
                             </div>
