@@ -74,7 +74,7 @@ class PeriodController extends Controller
     public function edit($id)
     {
         $period = Period::find(decrypt($id));
-        return view('periods.edit')->with(compact('period'));
+        return view('Periods.edit')->with(compact('period'));
     }
 
 

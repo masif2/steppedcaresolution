@@ -2803,8 +2803,16 @@ pre[class*="language-"]:before {
     top: 11px;
     left: 50px;
 }
-
-.pcoded-navbar.navbar-collapsed .pcoded-inner-navbar>li>a>.pcoded-mtext {
+ .nav_tooltip{
+    display:none;
+}
+.navbar-collapsed .nav_tooltip{
+    display: inline-block;
+}
+.navbar-collapsed .nav-icons-new{
+    display:none;
+}
+.pcoded-navbar.navbar-collapsed .pcoded-inner-navbar >li>a>.pcoded-mtext {
     -webkit-transform: rotateY(-90deg);
     transform: rotateY(-90deg);
     -webkit-transform-origin: 0 0;
@@ -2859,19 +2867,19 @@ pre[class*="language-"]:before {
     transition: all 0.15s ease-in-out;
 }
 
-.pcoded-navbar.navbar-collapsed:hover {
+/* .pcoded-navbar.navbar-collapsed:hover {
     width: 264px !important;
-}
+} */
 
-.pcoded-navbar.navbar-collapsed:hover .header-logo {
+/* .pcoded-navbar.navbar-collapsed:hover .header-logo {
     width: 264px;
-}
+} */
 
-.pcoded-navbar.navbar-collapsed:hover .header-logo img {
+/* .pcoded-navbar.navbar-collapsed:hover .header-logo img {
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     opacity: 1;
-}
+} */
 
 .pcoded-navbar.navbar-collapsed:hover .header-logo .logo-thumb {
     -webkit-transform: rotateY(-90deg);
@@ -2900,11 +2908,11 @@ pre[class*="language-"]:before {
     opacity: 1;
 }
 
-.pcoded-navbar.navbar-collapsed:hover .pcoded-inner-navbar>li>a>.pcoded-mtext {
+/* .pcoded-navbar.navbar-collapsed:hover .pcoded-inner-navbar>li>a>.pcoded-mtext {
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     opacity: 1;
-}
+} */
 
 .pcoded-navbar.navbar-collapsed:hover .pcoded-inner-navbar>li>a>.pcoded-mtext:after {
     opacity: 1;
@@ -2972,7 +2980,7 @@ pre[class*="language-"]:before {
     display: none;
 }
 
-.pcoded-navbar.mob-open~.pcoded-header:before,
+/* .pcoded-navbar.mob-open~.pcoded-header:before,
 .pcoded-navbar.mob-open~.pcoded-main-container:before,
 .pcoded-navbar.navbar-collapsed:hover~.pcoded-header:before,
 .pcoded-navbar.navbar-collapsed:hover~.pcoded-main-container:before {
@@ -2983,7 +2991,7 @@ pre[class*="language-"]:before {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 1;
-}
+} */
 
 
 /* ===  scroll bar start  ===== */
@@ -10153,6 +10161,12 @@ table.table_margin_adj thead tr td:last-child{
 }
 .navbar-collapsed .b-brand{
     width:20px;
+}
+table.stream_data_table thead tr td:last-child {
+    width: 43% !important;
+}
+.stream_primary_table thead tr td:nth-child(5){
+    width:12%;
 }
 @media only screen and (min-width:768px) and (max-width:1000px) {
     .grid_container {
