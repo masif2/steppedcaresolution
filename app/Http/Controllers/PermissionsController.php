@@ -25,7 +25,7 @@ class PermissionsController extends Controller
 
         $periods = Period::all();
         $projects = project::all();
-        $users = User::all();
+        $users = User::whereNotIn('role', ['Admin'])->get();
 
         return view("Permissions.create")->with(compact('projects','active_user', 'forms', 'users', 'periods'));
 
@@ -61,6 +61,12 @@ class PermissionsController extends Controller
             return back()->with('error', $e->getMessage());
         }
         return redirect()->route('dashboard.permissions', [$request->form_id])->with('success', 'permissions created successfully!');
+    }
+
+    public function getUsers($project_id)
+    {
+        $users = User::where('project_id', $project_id)->pluck("name","id");
+        return response()->json($users);
     }
 
     public function getForms($project_id)

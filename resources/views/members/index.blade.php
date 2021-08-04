@@ -69,8 +69,8 @@
                                     <tbody>
 
                                         @foreach($users as $key=>$data)
-                                        @if(auth()->user()->id==$data->id)
-                                        @else
+                                        {{--@if(auth()->user()->id==$data->id)
+                                        @else--}}
                                         <tr>
                                             <td> {{$data->name}}</td>
                                             <td> {{$data->email}} </td>
@@ -85,7 +85,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        @endif
+                                        {{--@endif--}}
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -104,7 +104,7 @@
                         <div class="show_rows_adj margin_top">
                             {{$users->links('components.pagination')}}
                         </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -123,14 +123,14 @@ jQuery(document).ready(function($){
          if(array[key]=={{$row_show}}){
          show_rows='<option value="'+array[key]+'" " selected>'+array[key]+'</option>';
          }else{
-             show_rows ='<option value="'+array[key]+'" ">'+array[key]+'</option>'; 
+             show_rows ='<option value="'+array[key]+'" ">'+array[key]+'</option>';
          }
-   
+
         $("#show_rows").append(show_rows);
     }
     @else
     for ( var key in array) {
-        show_rows ='<option value="'+array[key]+'" ">'+array[key]+'</option>'; 
+        show_rows ='<option value="'+array[key]+'" ">'+array[key]+'</option>';
         $("#show_rows").append(show_rows);
     }
     @endif

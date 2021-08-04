@@ -28,7 +28,7 @@
                                                 <select class="form-control form-select" name="period_id" id="period_id" aria-label="Default select example" required>
                                                     <option value="">Select Period</option>
                                                     @foreach($periods as $period)
-                                                        <option value="{{$period->id}}" {{old('period_id') == $period->id ? "selected" : ""}}>{{$period->name}}</option>
+                                                        <option value="{{$period->id}}" {{old('period_id') == $period->id ? "selected" : ""}}>{{$period->name}} ({{$period->start_date}} - {{$period->end_date}})</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -87,6 +87,8 @@
                                             <h3 class="text-center">Unassigned User</h3>
                                             <div class="card mb-0">
                                                 <ul class="list-group" id="unassign_user_section" data-draggable="target">
+                                                    {{--<span id="all_users"></span>--}}
+
                                                     @foreach($users as $user)
                                                         <li class="list-group-item" data-draggable="item">
                                                             <input type="hidden" name="all_users[]" value="{{$user->id}}">{{$user->name}}

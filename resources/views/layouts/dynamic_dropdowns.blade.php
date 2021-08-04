@@ -21,6 +21,30 @@
                         }
                     }
                 });
+
+                $.ajax({
+                    type:"get",
+                    url:"{{url('/get-users')}}/"+selected_option,
+                    success:function(response)
+                    {
+                        if(response)
+                        {
+                            $('#all_users').val('');
+
+                            var html = '';
+                            $.each(response,function(key,value){
+                                html += '<li class="list-group-item" data-draggable="item" >'+
+                                        '<input type="hidden" name="all_users[]" id="all_users" value="'+key+'"><span>'+value+'</span>'
+                                    +'</li>';
+
+                                /*$("#all_users").val(key);
+                                $("#all_user_names").append(value);*/
+                            });
+                            console.log(html)
+                            $("#all_users").html(html)
+                        }
+                    }
+                });
             }
         });
     }).change();
