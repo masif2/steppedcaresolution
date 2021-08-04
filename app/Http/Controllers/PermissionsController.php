@@ -53,6 +53,8 @@ class PermissionsController extends Controller
         try {
             $input = $request->except('_token');
             $input['created_by'] = auth()->user()->id;
+            
+            $input['unassigned_user'] = $request->unassigned_user??0;
             Permission::create($input);
 
         } catch (\Exception $e) {
