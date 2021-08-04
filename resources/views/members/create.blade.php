@@ -1,5 +1,13 @@
 @extends('layouts.app')
 @section('content')
+    <style>
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
 <div class="pcoded-wrapper">
     <div class="pcoded-content">
         <div class="container">
@@ -160,11 +168,10 @@
                                                             <div class="row">
 
                                                                <div class="col-sm-9 col-xs-9 col-md-9">
-                                                                    <input type="text" class="file_upload_input form-control"  aria-describedby="project_image">
-                                                                </div>
-                                                                <div class="col-sm-3 col-xs-3 col-md-3 project_btn_col">
-                                                                    <input class="file_upload_custom" type="file" id="project_image" name="project_image">
-                                                                    <span class="btn btn-light text-white project_upload_btn">Upload</span>
+                                                                   <label for="file-upload" class="custom-file-upload">
+                                                                       <i class="fa fa-cloud-upload"></i> Upload Image
+                                                                   </label>
+                                                                   <input class="file_upload_custom" id="file-upload" name='project_image' type="file" style="display:none;">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -188,12 +195,18 @@
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 function createproject(){
     document.getElementById("js_add_project").submit(function(){
 
     });
-
 }
+
+$('#file-upload').change(function() {
+    var i = $(this).prev('label').clone();
+    var file = $('#file-upload')[0].files[0].name;
+    $(this).prev('label').text(file);
+});
 </script>
 @endsection
