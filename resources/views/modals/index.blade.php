@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p> Are you sure you want to delete a member ?</p>
+                <p> Are you sure you want to delete a user ?</p>
                 <p> Remember this action will not be reversible .</p>
             </div>
             <input type="hidden" id="target_row">
