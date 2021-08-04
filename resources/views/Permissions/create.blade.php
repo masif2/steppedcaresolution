@@ -17,6 +17,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="table_div_padding">
+                            @include('layouts.flash-message')
                             <form method="POST" action="{{ route('dashboard.permission.store') }}">
                                 @csrf
                                 <div class="container">
@@ -39,11 +40,11 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                 <div class="mb-4">
                                                     <label for="FormGroup" class="form-label">Select Project *</label>
-                                                    <select class="form-control form-select" id="project_id" name="project_id" aria-label="Default select example" {{--required--}}>
+                                                    <select class="form-control form-select" id="project_id" name="project_id" aria-label="Default select example" required>
                                                         <option value="">Select Project</option>
-                                                        {{--@foreach($projects as $project)
+                                                        @foreach($projects as $project)
                                                             <option value="{{$project->id}}" {{old('project_id') == $project->id ? "selected" : ""}}>{{$project->name}}</option>
-                                                        @endforeach--}}
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -51,7 +52,7 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="FormGroup" class="form-label">Select Form *</label>
-                                                <select class="form-control form-select" id="form_id" name="form_id" {{--required--}} aria-label="Default select example">
+                                                <select class="form-control form-select" id="form_id" name="form_id" required aria-label="Default select example">
                                                     <option value="">Select Form</option>
                                                     @if(!empty($forms))
                                                         @foreach($forms as $form)
@@ -64,7 +65,7 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="Stream" class="form-label">Select Stream *</label>
-                                                <select class="form-control form-elect" id="stream_id" name="stream_id" {{--required--}} aria-label="Default select example">
+                                                <select class="form-control form-elect" id="stream_id" name="stream_id" required aria-label="Default select example">
                                                     <option value="">Select Stream</option>
                                                 </select>
                                             </div>
@@ -95,8 +96,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="assign_user" name="assign_user" value="">
-                                    <input type="hidden" id="unassign_user" name="unassign_user" value="">
+                                    <input type="hidden" id="assign_user" name="assigned_user" value="">
+                                    <input type="hidden" id="unassign_user" name="unassigned_user" value="">
                                     <div class="row mt-4">
                                         <div class="col-12">
                                             <button class="btn btn-primary">Save</button>

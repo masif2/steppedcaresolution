@@ -154,15 +154,6 @@
                                                         <input type="text" class="form-control" id="project_name" name="project_name" aria-describedby="project_name">
                                                     </div>
                                                     <div class="mb-4">
-                                                        <label for="Type" class="form-label">Periods</label>
-                                                        <select class="form-control form-select" name="period_id" id="period_id" aria-label="Default select example" required>
-                                                            <option selected disabled>Select Period</option>
-                                                            @foreach($periods as $period)
-                                                                <option value="{{$period->id}}" {{old('period_id')== $period->id ? "selected" :""}}>{{$period->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-4">
                                                         <div class="custom-file mb-3">
                                                             <label>Image</label>
 
@@ -185,7 +176,6 @@
                                     <div class="modal-footer project_modal_footer users_modal_footer">
                                         <button type="button" class="btn btn-primary" onclick="createproject('js_add_project')">Add</button>
                                         <button class="btn btn-light text-white" data-dismiss="modal">Cancel</button>
-
                                     </div>
                                 </div>
                             </div>
@@ -201,7 +191,7 @@
 <script>
 function createproject(){
     document.getElementById("js_add_project").submit(function(){
-        
+
     });
 
 }
