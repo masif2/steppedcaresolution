@@ -40,7 +40,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                 <div class="mb-4">
                                                     <label for="FormGroup" class="form-label">Select Project *</label>
-                                                    <select class="form-control form-select" id="project_id" name="project_id" aria-label="Default select example" {{--required--}}>
+                                                    <select class="form-control form-select" id="project_id" name="project_id" aria-label="Default select example" required>
                                                         <option value="">Select Project</option>
                                                         @foreach($projects as $project)
                                                             <option value="{{$project->id}}" {{old('project_id') == $project->id ? "selected" : ""}}>{{$project->name}}</option>
@@ -52,7 +52,7 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="FormGroup" class="form-label">Select Form *</label>
-                                                <select class="form-control form-select" id="form_id" name="form_id" {{--required--}} aria-label="Default select example">
+                                                <select class="form-control form-select" id="form_id" name="form_id" required aria-label="Default select example">
                                                     <option value="">Select Form</option>
                                                     @if(!empty($forms))
                                                         @foreach($forms as $form)
@@ -65,7 +65,7 @@
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                             <div class="mb-4">
                                                 <label for="Stream" class="form-label">Select Stream *</label>
-                                                <select class="form-control form-elect" id="stream_id" name="stream_id" {{--required--}} aria-label="Default select example">
+                                                <select class="form-control form-elect" id="stream_id" name="stream_id" required aria-label="Default select example">
                                                     <option value="">Select Stream</option>
                                                 </select>
                                             </div>
