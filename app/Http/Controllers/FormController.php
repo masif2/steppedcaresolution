@@ -34,9 +34,8 @@ class FormController extends Controller
             ->paginate($perPage);
 
         $projects = project::all();
-        $periods = Period::all();
         $row_show = $perPage;
-        return view('forms.index')->with(compact('projects', 'forms', 'active_user', 'row_show', 'periods'));
+        return view('forms.index')->with(compact('projects', 'forms', 'active_user', 'row_show'));
     }
 
 

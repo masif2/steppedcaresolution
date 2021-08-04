@@ -1,28 +1,5 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    // get projects
-    $('select#period_id').change(function(){
-        $(this).find("option:selected").each(function(){
-            var selected_option = $(this).attr("value");
-            if(selected_option){
-                $.ajax({
-                    type:"get",
-                    url:"{{url('/get-projects')}}/"+selected_option,
-                    success:function(response)
-                    {
-                        if(response)
-                        {
-                            $('#project_id').empty();
-                            $('#project_id').append('<option value="">Select Project</option>');
-                            $.each(response,function(key,value){
-                                $('#project_id').append('<option value="'+key+'">'+value+'</option>');
-                            });
-                        }
-                    }
-                });
-            }
-        });
-    });
 
     // get forms
     $('select#project_id').change(function(){
