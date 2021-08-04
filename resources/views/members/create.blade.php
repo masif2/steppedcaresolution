@@ -7,7 +7,7 @@
             <div class="row blue-border-bottom">
                 <div class="col-sm-12 col-md-12 px-0">
                     <div class="top-header pt-2 ">
-                        <h3 class="margin-page-title">Add Member</h3>
+                        <h3 class="margin-page-title">Add User</h3>
                     </div>
                 </div>
             </div>
@@ -145,8 +145,8 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                    <form method="POST" action="{{ route('dashboard.project.store') }}"  enctype="multipart/form-data" id="js_add_project">
-                                    @csrf
+                                        <form method="POST" action="{{ route('dashboard.project.store') }}"  enctype="multipart/form-data" id="js_add_project">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-lg-12 col-xl-12 col-md-12 col-12">
                                                     <div class="mb-4">
@@ -175,7 +175,7 @@
                                     </div>
                                     <div class="modal-footer project_modal_footer users_modal_footer">
                                         <button type="button" class="btn btn-primary" onclick="createproject('js_add_project')">Add</button>
-                                        <button class="btn btn-light text-white" data-dismiss="modal">Cancel</button>
+                                        <a href="{{route('dashboard.users')}}" class="btn btn-light text-white" data-dismiss="modal">Cancel</a>
                                     </div>
                                 </div>
                             </div>
