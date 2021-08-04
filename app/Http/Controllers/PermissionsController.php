@@ -63,12 +63,6 @@ class PermissionsController extends Controller
         return redirect()->route('dashboard.permissions', [$request->form_id])->with('success', 'permissions created successfully!');
     }
 
-    public function getProjects($period_id)
-    {
-        $projects = project::where('period_id', $period_id)->pluck("name","id");
-        return response()->json($projects);
-    }
-
     public function getForms($project_id)
     {
         $forms = Form::where('project_id', $project_id)->pluck("name","id");
