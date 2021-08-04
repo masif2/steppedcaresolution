@@ -42,7 +42,7 @@
                                                 <td>Start Date</td>
                                                 <td>End Date</td>
                                                 <td>Status</td>
-                                                <td></td>
+                                                <td>Actions</td>
                                             </tr>
                                         </thead>
                                         <tbody>
