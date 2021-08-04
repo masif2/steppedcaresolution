@@ -105,6 +105,7 @@ class PeriodController extends Controller
             return back()->with('error', $e->getMessage());
         }
         return redirect()->route('dashboard.periods')->with('success', 'Period updated successfully!');
+
     }
 
     public function delete(Request $request)

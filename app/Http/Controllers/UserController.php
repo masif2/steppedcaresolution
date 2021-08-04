@@ -79,7 +79,6 @@ class UserController extends Controller
         # code...
         $data = [];
         $data["projects"] = $this->projects_model->all_Projects();
-        $data["periods"] = Period::all();
         $data["countries"] = DB::table("countries")->get();
         return view('members.create', $data);
     }
