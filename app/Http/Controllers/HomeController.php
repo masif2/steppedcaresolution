@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Stream;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Form;
@@ -33,7 +34,7 @@ class HomeController extends Controller
             $search_keyword = $request->input('keyword') ?? null;
             $active_user = User::where('id', auth()->user()->id)->first();
             $perPage = $request->show_rows ?? 10;
-    
+
             $forms = Form::when($search_keyword, function ($query, $value) {
                 $query->where('forms.name', 'like', '%' . $value . '%')
                     ->orWhere('p.name', 'like', '%' . $value . '%');
@@ -41,7 +42,7 @@ class HomeController extends Controller
                 ->leftjoin('projects as p', 'p.id', '=', 'forms.project_id')
                 ->where(function ($q) use($active_user) {
                     if ($active_user->role == 'Admin') {
-    
+
                     }else{
                         $q->where('forms.created_by', $active_user->id);
                     }
@@ -49,17 +50,24 @@ class HomeController extends Controller
                 ->select('forms.id AS form_id', 'forms.name as form_name', 'p.name as project_name', 'p.id as project_id')
                 ->orderBy('form_id', 'DESC')
                 ->paginate($perPage);
-    
+
+
+
+            $streams = Stream::leftjoin('forms as f', 'streams.form_id', '=', 'f.id')
+                ->select('streams.id AS stream_id', 'streams.name as stream_name', 'f.name as form_name', 'f.project_id as project_id', 'streams.status as stream_status')
+                ->orderBy('stream_id', 'DESC')
+                ->paginate($perPage);
+
             $projects = project::all();
             $row_show = $perPage;
 
-            return view('dashboard')->with(compact('projects', 'forms', 'active_user', 'row_show'));
+            return view('dashboard')->with(compact('projects', 'forms', 'active_user', 'row_show', 'streams'));
         }else{
             return view('dashboard');
         }
-       
 
 
-        
+
+
     }
 }

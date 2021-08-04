@@ -1,5 +1,5 @@
 @if(Auth::user()->role=="Admin" || Auth::user()->role=="Manager")
-@include('admin')
+    @include('admin')
 @else
-@include('user_dashboard')
+    @include('user_dashboard')
 @endif
