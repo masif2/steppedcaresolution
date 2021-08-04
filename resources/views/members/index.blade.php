@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-sm-6 col-md-3 col-lg-2 ">
                     <div class="top-header right_icon_text search_bar_adj">
-                        <b class=""><a class="add_icon" href="{{route('dashboard.user.create')}}"><span><i class="fas fa-plus-circle"></i></span><span> Add Member</span></a></b>
+                        <b class=""><a class="add_icon" href="{{route('dashboard.user.create')}}"><span><i class="fas fa-plus-circle"></i></span><span> Add User</span></a></b>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,6 @@
                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                     <a href="{{route('dashboard.user.view','ref='.encrypt($data->id))}}" type="button" class="btn  table_btn  view_btn text-white">View</a>
                                                     <a href="{{route('dashboard.user.edit','ref='.encrypt($data->id))}}" type="button" class="btn table_btn  update_btn text-white">Update</a>
-
                                                     <button type="button" class="btn  table_btn delete_btn text-white delete_modal" data-toggle="modal" data-deleteMember="{{route('dashboard.user.delete')}}{{'?ref='.encrypt($data->id)}}">Delete</button>
 
                                                 </div>
