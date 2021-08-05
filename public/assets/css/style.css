@@ -10168,6 +10168,9 @@ table.stream_data_table thead tr td:last-child {
 .stream_primary_table thead tr td:nth-child(5){
     width:12%;
 }
+.dropdown_small_text{
+    color:grey
+}
 @media only screen and (min-width:768px) and (max-width:1000px) {
     .grid_container {
         grid-template-columns: 87% 12%;
