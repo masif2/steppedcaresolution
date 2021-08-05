@@ -11,20 +11,8 @@
                     <div class="row">
                     @include('layouts.flash-message') 
                     </div>     
-                     <center><h3> {{ __('Password Reset') }}</h3></center>
+                     <center><h3> {{ __('Update Password') }}</h3></center>
                         <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row reset_margin_bottom">
-                            <label for="email" class="col-md-12 col-form-label ">{{ __('E-Mail Address') }}</label>
-                            <div class="col-md-12">
-                                <input id="email" type="email" class="form-control bg-color-login input_border @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row reset_margin_bottom">
                             <label for="password" class="col-md-12 col-form-label ">{{ __('Password') }}</label>

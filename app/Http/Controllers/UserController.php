@@ -91,6 +91,7 @@ class UserController extends Controller
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
             'phone' => 'required|digits:11',
             'role' => 'required',
             'status' => 'required',
@@ -111,7 +112,7 @@ class UserController extends Controller
         $params["name"] = $request->firstname . ' ' . $request->lastname;
         $params["project_id"] = $request->project_id;
         $params["role"] = $request->role;
-        $params["password"] = bcrypt('12345678');
+        $params["password"] = bcrypt($request->password);
         $params["createdBy"] = auth()->user()->id;
 
             # code...
@@ -192,7 +193,7 @@ class UserController extends Controller
             return back()->withErrors($validator)->withInput();
         }
         //
-        $params = $request->except('_token');
+        $params = $request->except(['_token','password']);
         $params["name"] = $request->firstname . ' ' . $request->lastname;
         $params["role"] = $request->role;
         $params["project_id"] = $request->project_id;
