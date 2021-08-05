@@ -123,7 +123,7 @@ class UserController extends Controller
             $data['email']= $request->email;
             $token = Str::random(64);
             $data['url']=(route('reset.password.get',$token));
-            $data['subject'] = "Verify Your Email Address";
+            $data['subject'] = "Update Your Password";
             $data['msg'] = "Welcome to Stepped Care Solutions";
             $data['username']  = $request->firstname. ' '.$request->lastname;
 

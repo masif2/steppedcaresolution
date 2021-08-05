@@ -48,9 +48,8 @@
             <div id="email-content">
                 <div id="content-e">
                 <p style="margin : 10px 0px"><h2>Hello! {{$username}}<h2></p><br>
-                    
-                    <p style="margin : 10px 0px">You are receiving this email because we received a password reset request for your account.</p>
-                    <p style="margin : 10px 0px">If you did not request a password reset, no further action is required.</p>
+                    <p style="margin : 10px 0px">You account has been created successfully.Now please update your password to access the portal</p>
+                    <p style="margin : 10px 0px">To update your password, Click on the button below.</p>
                     
                     <p style="margin : 10px 0px">Regards,</p>
                     <p style="margin : 10px 0px">SCS Team</p>
