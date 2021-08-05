@@ -32,13 +32,19 @@
                             $('#all_users').html('');
 
                             var html = '';
+                            const unassign_array = [];
 
                             $.each(response,function(key,value){
                                 html += '<li class="list-group-item" data-draggable="item" draggable="true">'+
                                         '<input type="hidden" name="all_users[]" value="'+key+'"><span>'+value+'</span>'
                                     +'</li>';
+
+                                unassign_array.push(key);
                             });
+
+                            console.log(unassign_array);
                             $("#all_users").html(html)
+                            $("#unassign_user").val(unassign_array)
                         }
                     }
                 });
