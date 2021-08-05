@@ -39,7 +39,6 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
         $validator = Validator::make($request->all(), [
             'period_id' => ['required'],
             'project_id' => ['required'],
