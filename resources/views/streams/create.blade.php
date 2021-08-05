@@ -50,6 +50,7 @@
                                             <button class="tablinks li_light_border" onclick="openCity(event, 'date')"><img class="image_black" src="{{url('/assets/images/date_black.png')}}" />  <img class="image_white" src="{{url('/assets/images/date_white.png')}}" /> <span class="light_grey_text">Date</span> </button>
                                             <button class="tablinks li_light_border" onclick="openCity(event, 'image')"><img class="image_black" src="{{url('/assets/images/image_black.png')}}" /> <img class="image_white" src="{{url('/assets/images/image_white.png')}}" /> <span class="light_grey_text"> Image</span></button>
                                             <button class="tablinks li_light_border" onclick="openCity(event, 'table')" id="defaultOpen"><img class="image_black" src="{{url('/assets/images/table_black.png')}}" /> <img class="image_white" src="{{url('/assets/images/image_white.png')}}" /> <span class="light_grey_text">Data Table</span></button>
+                                            <button class="tablinks li_light_border" onclick="openCity(event, 'dropdown')" id="defaultOpen"><img class="image_black" src="{{url('/assets/images/table_black.png')}}" /> <img class="image_white" src="{{url('/assets/images/image_white.png')}}" /> <span class="light_grey_text">Drop Down</span></button>
                                         </div>
                                     </div>
                                 </div>
@@ -600,6 +601,62 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-12 tabcontent " id="dropdown">
+                                    <div class="card ">
+                                        <ul class="vertical_nav">
+                                            <li class="first_vertical_nav font-weight-bold li_dark_border"> Drop Down</li>
+                                        </ul>
+                                        <div class="card-padding">
+                                            <form>
+                                                <div class="row row_adjusted">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Name</label>
+                                                            <input type="text" class="form-control white_input" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_adjusted mb-2">
+                                                    <div class="col-sm-12 col-lg-5">
+                                                        <table class="radio_table" style="width:100%">
+                                                            <tr>
+                                                                <th> Required </th>
+                                                                <td>
+                                                                    <label class="radio_container">
+                                                                        <input type="radio" checked="checked" name="Required">
+                                                                        <span class="checkmark"></span>
+                                                                        Yes
+                                                                    </label>
+                                                                </td>
+                                                                <td>
+                                                                    <label class="radio_container">No
+                                                                        <input type="radio" checked="checked" name="Required">
+                                                                        <span class="checkmark"></span>
+                                                                    </label>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                     </div>
+                                                </div>
+                                                <div class="row adjusted">
+                                                    <div class="col-sm-12 col-lg-6">
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        <p class="dropdown_small_text"> Enter comma separated values</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row row_adjusted">
+                                                    <div class="col-sm-12">
+                                                        <div class="btn-group btn_group_padding">
+                                                            <button class="btn table_btn del_modal_btn text-white"> Add </button>
+                                                            <button class="btn table_btn cancel_modal_btn text-white"> Reset </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
                                             </form>
                                         </div>
                                     </div>
