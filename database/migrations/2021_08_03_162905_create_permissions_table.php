@@ -19,8 +19,8 @@ class CreatePermissionsTable extends Migration
             $table->bigInteger('project_id')->unsigned();
             $table->bigInteger('form_id')->unsigned();
             $table->bigInteger('stream_id')->unsigned();
-            $table->string('assigned_user');
-            $table->string('unassigned_user');
+            $table->string('assigned_user')->nullable();
+            $table->string('unassigned_user')->nullable();
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();

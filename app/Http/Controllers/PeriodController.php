@@ -27,7 +27,7 @@ class PeriodController extends Controller
             ->paginate($perPage);
 
         $row_show = $perPage;
-        return view('periods.index')->with(compact('periods', 'row_show'));
+        return view('Periods.index')->with(compact('periods', 'row_show'));
     }
 
     /**
@@ -37,7 +37,7 @@ class PeriodController extends Controller
      */
     public function create()
     {
-        return view("periods.create");
+        return view("Periods.create");
     }
 
     /**
