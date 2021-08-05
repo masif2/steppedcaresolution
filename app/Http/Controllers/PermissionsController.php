@@ -39,6 +39,7 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->input());
         $validator = Validator::make($request->all(), [
             'period_id' => ['required'],
             'project_id' => ['required'],
@@ -65,7 +66,7 @@ class PermissionsController extends Controller
 
     public function getUsers($project_id)
     {
-        $users = User::where('project_id', $project_id)->pluck("name","id");
+        $users = User::where('project_id', $project_id)->whereNotIn('role', ['Admin'])->pluck("name","id");
         return response()->json($users);
     }
 

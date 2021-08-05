@@ -81,19 +81,24 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <h4>Drag User from <u>Unassigned User</u> to <u>Assigned User</u></h4>
 
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-4 col-12">
                                             <h3 class="text-center">Unassigned User</h3>
                                             <div class="card mb-0">
                                                 <ul class="list-group" id="unassign_user_section" data-draggable="target">
-                                                    {{--<span id="all_users"></span>--}}
+                                                    <span id="all_users"></span>
 
-                                                    @foreach($users as $user)
+                                                    {{--@foreach($users as $user)
                                                         <li class="list-group-item" data-draggable="item">
                                                             <input type="hidden" name="all_users[]" value="{{$user->id}}">{{$user->name}}
                                                         </li>
-                                                    @endforeach
+                                                    @endforeach--}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -196,7 +201,7 @@
                     assign_array.push($(this).children('input').val());
                 });
 
-                $("#unassign_user_section").children('li').each(function(i,v){
+                $("#unassign_user_section").children('span').children('li').each(function(i,v){
                     unassign_array.push($(this).children('input').val());
                 });
 
@@ -208,7 +213,6 @@
             }, false);
 
         })();
-
     </script>
 
 @endsection
