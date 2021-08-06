@@ -56,18 +56,10 @@
                                 <div class="col-xl-8 col-lg-8 col-md-8 col-12 tabcontent " id="long_text">
                                     <div class="card ">
                                         <ul class="vertical_nav">
-                                            <li class="first_vertical_nav font-weight-bold li_dark_border">Long Text Field</li>
+                                            <li class="first_vertical_nav font-weight-bold li_dark_border" id="field-card-heading">Long Text Field</li>
                                         </ul>
                                         <div class="card-padding">
-                                            <form>
-                                                <!-- <div class="row row_adjusted">
-                                                    <div class="col-sm-12 col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">DB Name</label>
-                                                            <input type="text" class="form-control light_grey_input" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                        </div>
-                                                    </div>
-                                                </div> -->
+                                            {{--<form>--}}
                                                 <div class="row row_adjusted">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div class="form-group">
@@ -133,339 +125,16 @@
                                                 <div class="row row_adjusted">
                                                     <div class="col-sm-12">
                                                         <div class="btn-group btn_group_padding">
-                                                            <button class="btn table_btn del_modal_btn text-white"> Add </button>
+                                                            <button class="btn table_btn del_modal_btn text-white" onclick="addField()"> Add </button>
                                                             <button class="btn table_btn cancel_modal_btn text-white"> Reset </button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            {{--</form>--}}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-8 col-lg-8 col-md-8 col-12 tabcontent " id="text">
-                                    <div class="card ">
-                                        <ul class="vertical_nav">
-                                            <li class="first_vertical_nav font-weight-bold li_dark_border"> Text Field</li>
-                                        </ul>
-                                        <div class="card-padding">
-                                            <form>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12 col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Name</label>
-                                                            <input type="text" class="form-control white_input" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12 col-lg-5">
-                                                        <table class="radio_table" style="width:100%">
-                                                            <tr>
-                                                                <th> Required </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Required">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Required">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th> Allow Duplicate: </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Duplicate">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Duplicate">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th> Cumulative Value: </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Cumulative">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Cumulative">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12">
-                                                        <div class="btn-group btn_group_padding">
-                                                            <button class="btn table_btn del_modal_btn text-white"> Add </button>
-                                                            <button class="btn table_btn cancel_modal_btn text-white"> Reset </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-8 col-md-8 col-12 tabcontent " id="numeric">
-                                    <div class="card ">
-                                        <ul class="vertical_nav">
-                                            <li class="first_vertical_nav font-weight-bold li_dark_border"> Numeric Field</li>
-                                        </ul>
-                                        <div class="card-padding">
-                                            <form>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12 col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Name</label>
-                                                            <input type="text" class="form-control white_input" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12 col-lg-5">
-                                                        <table class="radio_table" style="width:100%">
-                                                            <tr>
-                                                                <th> Required </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Required">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Required">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th> Allow Duplicate: </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Duplicate">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Duplicate">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th> Cumulative Value: </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Cumulative">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Cumulative">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12">
-                                                        <div class="btn-group btn_group_padding">
-                                                            <button class="btn table_btn del_modal_btn text-white"> Add </button>
-                                                            <button class="btn table_btn cancel_modal_btn text-white"> Reset </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-8 col-md-8 col-12 tabcontent " id="date">
-                                    <div class="card ">
-                                        <ul class="vertical_nav">
-                                            <li class="first_vertical_nav font-weight-bold li_dark_border"> Date Field</li>
-                                        </ul>
-                                        <div class="card-padding">
-                                            <form>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12 col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Name</label>
-                                                            <input type="text" class="form-control white_input" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12 col-lg-5">
-                                                        <table class="radio_table" style="width:100%">
-                                                            <tr>
-                                                                <th> Required </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Required">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Required">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th> Allow Duplicate: </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Duplicate">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Duplicate">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th> Cumulative Value: </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Cumulative">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Cumulative">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12">
-                                                        <div class="btn-group btn_group_padding">
-                                                            <button class="btn table_btn del_modal_btn text-white"> Add </button>
-                                                            <button class="btn table_btn cancel_modal_btn text-white"> Reset </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-8 col-md-8 col-12 tabcontent " id="image">
-                                    <div class="card ">
-                                        <ul class="vertical_nav">
-                                            <li class="first_vertical_nav font-weight-bold li_dark_border"> Image Field</li>
-                                        </ul>
-                                        <div class="card-padding">
-                                            <form>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12 col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Name</label>
-                                                            <input type="text" class="form-control white_input" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12 col-lg-5">
-                                                        <table class="radio_table" style="width:100%">
-                                                            <tr>
-                                                                <th> Required </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Required">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Required">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th> Allow Duplicate: </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Duplicate">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Duplicate">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th> Cumulative Value: </th>
-                                                                <td>
-                                                                    <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Cumulative">
-                                                                        <span class="checkmark"></span>
-                                                                        Yes
-                                                                    </label>
-                                                                </td>
-                                                                <td>
-                                                                    <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Cumulative">
-                                                                        <span class="checkmark"></span>
-                                                                    </label>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="row row_adjusted">
-                                                    <div class="col-sm-12">
-                                                        <div class="btn-group btn_group_padding">
-                                                            <button class="btn table_btn del_modal_btn text-white"> Add </button>
-                                                            <button class="btn table_btn cancel_modal_btn text-white"> Reset </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div id="table" class="col-xl-8 col-lg-8 col-md-8 col-12 tabcontent">
                                     <div class="card ">
                                         <ul class="vertical_nav">
@@ -682,10 +351,32 @@
             </div>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <script>
         function openCity(evt, cityName) {
+            let headingText = '';
+            let cardId = cityName === 'table' ? "table" : 'long_text';
+            switch (cityName) {
+                case 'text':
+                    headingText = "Text Field";
+                    break;
+                case 'long_text':
+                    headingText = "Long Text Field";
+                    break;
+                case 'date':
+                    headingText = "Date Field";
+                    break;
+                case 'image':
+                    headingText = "Image Field";
+                    break;
+                case 'numeric':
+                    headingText = "Numeric Field";
+                    break;
+            }
+            $("#field-card-heading").text(headingText)
+
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
@@ -695,7 +386,7 @@
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-            document.getElementById(cityName).style.display = "block";
+            document.getElementById(cardId).style.display = "block";
             evt.currentTarget.className += " active";
         }
 
@@ -745,6 +436,10 @@
             var iframe_height = parseInt($('html').height());
             window.parent.postMessage( iframe_height, 'https://bootsnipp.com');
         });
+
+        const addField = () => {
+            alert("hello world")
+        }
     </script>
 
 
