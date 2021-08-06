@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <form method="POST" action="{{ route('dashboard.form.add_update_stream_summary') }}" enctype="multipart/form-data">
                     @csrf
-                    <input type="text" name="id" value="{{$stream->id}}">
+                    <input type="hidden" name="id" value="{{$stream->id}}">
                     <div class="row">
                         <div class="col-lg-12 col-xl-12 col-md-12 col-12">
                             <div class="mb-4">
