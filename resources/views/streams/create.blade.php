@@ -61,11 +61,12 @@
                                         </ul>
                                         <div class="card-padding">
                                             {{--<form>--}}
+                                            <input type="hidden" name="field_type" id="field_type" >
                                                 <div class="row row_adjusted">
                                                     <div class="col-sm-12 col-lg-6">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1">Name</label>
-                                                            <input type="text" class="form-control white_input" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                            <label for="field_name">Name</label>
+                                                            <input type="text" class="form-control white_input" id="field_name" aria-describedby="emailHelp">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -76,14 +77,14 @@
                                                                 <th> Required </th>
                                                                 <td>
                                                                     <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Required">
+                                                                        <input type="radio" checked="checked" name="field_required" value="yes" id="field_required">
                                                                         <span class="checkmark"></span>
                                                                         Yes
                                                                     </label>
                                                                 </td>
                                                                 <td>
                                                                     <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Required">
+                                                                        <input type="radio" checked="checked" name="field_required" value="no" id="field_required">
                                                                         <span class="checkmark"></span>
                                                                     </label>
                                                                 </td>
@@ -92,14 +93,14 @@
                                                                 <th> Allow Duplicate: </th>
                                                                 <td>
                                                                     <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Duplicate">
+                                                                        <input type="radio" checked="checked" name="field_duplicate" value="yes" id="field_duplicate">
                                                                         <span class="checkmark"></span>
                                                                         Yes
                                                                     </label>
                                                                 </td>
                                                                 <td>
                                                                     <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Duplicate">
+                                                                        <input type="radio" checked="checked" name="field_duplicate" id="field_duplicate" value="no">
                                                                         <span class="checkmark"></span>
                                                                     </label>
                                                                 </td>
@@ -108,14 +109,14 @@
                                                                 <th> Cumulative Value: </th>
                                                                 <td>
                                                                     <label class="radio_container">
-                                                                        <input type="radio" checked="checked" name="Cumulative">
+                                                                        <input type="radio" checked="checked" name="field_cumulative" value="yes" id="field_cumulative">
                                                                         <span class="checkmark"></span>
                                                                         Yes
                                                                     </label>
                                                                 </td>
                                                                 <td>
                                                                     <label class="radio_container">No
-                                                                        <input type="radio" checked="checked" name="Cumulative">
+                                                                        <input type="radio" checked="checked" name="field_cumulative" id="field_cumulative" value="no">
                                                                         <span class="checkmark"></span>
                                                                     </label>
                                                                 </td>
@@ -325,7 +326,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </form>
                                         </div>
                                     </div>
@@ -345,51 +346,8 @@
                                             <td class="add_stream_btn_two"> Actions </td>
                                         </tr>
                                         </thead>
-                                        <tbody class="ui-sortable">
-                                        <tr id="2" class="ui-sortable-handle">
-                                            <td scope="row"> Overview</td>
-                                            <td> Text </td>
-                                            <td> Yes </td>
-                                            <td> yes </td>
-                                            <td> yes </td>
-                                            <td class="index">1</td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn table_btn  update_btn text-white">Update</button>
-                                                    <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
+                                        <tbody class="ui-sortable" id="fields_table">
 
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="3" class="ui-sortable-handle">
-                                            <td scope="row"> Overview 2</td>
-                                            <td> Text </td>
-                                            <td> Yes </td>
-                                            <td> yes </td>
-                                            <td> yes </td>
-                                            <td class="index">2</td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn table_btn  update_btn text-white">Update</button>
-                                                    <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr id="1" class="ui-sortable-handle">
-                                            <td scope="row"> Overview 3</td>
-                                            <td> Text </td>
-                                            <td> Yes </td>
-                                            <td> yes </td>
-                                            <td> yes </td>
-                                            <td class="index">3</td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn table_btn  update_btn text-white">Update</button>
-                                                    <button type="button" class="btn  table_btn delete_btn text-white">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -432,6 +390,7 @@
                     headingText = "Numeric Field";
                     break;
             }
+            $("#field_type").val(cityName)
             $("#field-card-heading").text(headingText)
 
             var i, tabcontent, tablinks;
@@ -495,7 +454,37 @@
         });
 
         const addField = () => {
-            alert("hello world")
+            let fieldName = $("#field_name").val();
+            let fieldType = $("#field_type").val();
+            let isRequired = $('input[name=field_required]:checked').val()
+            let isDuplicate = $('input[name=field_duplicate]:checked').val()
+            let isCumulative = $('input[name=field_cumulative]:checked').val()
+            let orderCount = $(".orderCount").length
+            orderCount = orderCount + 1
+
+            let newRow = '<tr id="2" class="ui-sortable-handle">'
+            newRow += '<td scope="row"> '+fieldName+'</td>'
+            newRow += '<td> '+fieldType+' </td>'
+            newRow += '<td> '+isRequired+' </td>'
+            newRow += '<td> '+isDuplicate+' </td>'
+            newRow += '<td> '+isCumulative+' </td>'
+            newRow += '<td class="index">'+orderCount+'</td>'
+            newRow += '<td>'
+            newRow += '<div class="btn-group" role="group" aria-label="Basic example">'
+            newRow += '<button type="button" class="btn table_btn  update_btn text-white">Update</button>'
+            newRow += '<button type="button" class="btn  table_btn delete_btn text-white">Delete</button>'
+            newRow += '</div>'
+            newRow += '</td>'
+            newRow += '</tr>'
+
+            newRow += '<input type="hidden" name="[]fieldName"  value="'+fieldName+'" >'
+            newRow += '<input type="hidden" name="[]fieldType"  value="'+fieldType+'" >'
+            newRow += '<input type="hidden" name="[]isRequired"  value="'+isRequired+'" >'
+            newRow += '<input type="hidden" name="[]isDuplicate"  value="'+isDuplicate+'" >'
+            newRow += '<input type="hidden" name="[]isCumulative"  value="'+isCumulative+'" >'
+            newRow += '<input type="hidden" name="[]orderCount"  value="'+orderCount+'" >'
+
+            $("#fields_table").append(newRow)
         }
     </script>
 
