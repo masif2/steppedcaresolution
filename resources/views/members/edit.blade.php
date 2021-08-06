@@ -42,6 +42,13 @@
                                         </div>
                                         <div class="col-lg-6 col-x-6 col-md-6 col-12">
                                             <div class="mb-4">
+                                                <label for="email" class="form-label">Password *</label>
+                                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" aria-describedby="password" value="{{ old('password') }}" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-x-6 col-md-6 col-12">
+                                            <div class="mb-4">
                                                 <label for="phone" class="form-label">Phone</label>
                                                 <input type="tel"  class="form-control" id="phone" name="phone" placeholder="Month 1" aria-describedby="phone" value="{{$user->phone??null}}">
                                             </div>

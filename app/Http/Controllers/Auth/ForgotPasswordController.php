@@ -51,7 +51,7 @@ class ForgotPasswordController extends Controller
             $data['msg'] = "Welcome to Stepped Care Solutions";
             $data['username']  = $user->firstname . ' ' . $user->lastname;
             try {
-                Mail::send('emails.reset', $data, function ($message) use ($data) {
+                Mail::send('emails.forgotpassword', $data, function ($message) use ($data) {
                     $message->to($data['email'])->from('masif@egenienext.com', 'Stepped Care Solutions')->subject($data['subject']);
                 });
                 return back()->with('success', 'We have e-mailed your password reset link!');
@@ -80,14 +80,12 @@ class ForgotPasswordController extends Controller
     public function submitResetPasswordForm(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required'
         ]);
 
         $updatePassword = DB::table('password_resets')
             ->where([
-                'email' => $request->email,
                 'token' => $request->token
             ])
             ->first();
@@ -95,11 +93,11 @@ class ForgotPasswordController extends Controller
         if (!$updatePassword) {
             return back()->withInput()->with('error', 'Invalid token!');
         }
-
-        $user = User::where('email', $request->email)
+        
+        $user = User::where('email', $updatePassword->email)
             ->update(['password' => Hash::make($request->password)]);
 
-        DB::table('password_resets')->where(['email' => $request->email])->delete();
+        DB::table('password_resets')->where(['token' =>  $request->token])->delete();
 
         return redirect('/login')->with('success', 'Your password has been changed!');
     }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" , initial-scale="1.0">
-    <title>Update Password</title>
+    <title>Forgot Password</title>
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
@@ -48,8 +48,12 @@
             <div id="email-content">
                 <div id="content-e">
                 <p style="margin : 10px 0px"><h2>Hello! {{$username}}<h2></p><br>
-                    <p style="margin : 10px 0px">You account has been created successfully.Now please update your password to access the portal</p>
-                    <p style="margin : 10px 0px">To update your password, Click on the button below.</p>
+                
+                <p style="margin : 10px 0px">Forgot your password?</p>
+
+                    <p style="margin : 10px 0px"> we received a request reset the password for your account.</p><br>
+
+                    <p style="margin : 10px 0px">To Reset your password, Click on the button below.</p>
                     
                     <p style="margin : 10px 0px">Regards,</p>
                     <p style="margin : 10px 0px">SCS Team</p>
@@ -57,7 +61,7 @@
                 <br>
                 <br>
                 <a href="{{$url}}" target="_blank"
-                    style="padding : 10px ; align-self : flex-start ; background-color : #4492DA ; color : #ffffff ; border-radius : 5px ; width : 125px ; text-align : center; text-decoration: none;">Update Password </a>
+                    style="padding : 10px ; align-self : flex-start ; background-color : #4492DA ; color : #ffffff ; border-radius : 5px ; width : 125px ; text-align : center; text-decoration: none;">Reset Password </a>
             </div>
         </div>
     </div>
